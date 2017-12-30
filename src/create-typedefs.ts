@@ -7,5 +7,9 @@ import * as path from 'path'
 import {config} from '../index'
 const JsonToTS = require('json-to-ts')
 
-const ts = JsonToTS(config, {rootName: 'Config'}).join('\n')
-fs.writeFileSync(path.resolve(process.cwd(), 'config/Config.d.ts'), ts)
+const file = `Config.d.ts`
+const ts = ['/* tslint:disable */']
+  .concat(JsonToTS(config, {rootName: 'Config'}))
+  .join('\n')
+
+fs.writeFileSync(path.resolve(process.cwd(), `config/${file}`), ts)
