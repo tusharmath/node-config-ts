@@ -10,3 +10,5 @@ declare module 'module-exists' {
 declare module '*.json' {
   export {}
 }
+
+interface Config {}
