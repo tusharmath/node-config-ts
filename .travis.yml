@@ -5,7 +5,7 @@ cache:
 notifications:
   email: false
 node_js:
-  - stable
+  - 'stable'
 before_script:
   - npm prune
 after_success:

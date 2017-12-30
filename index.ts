@@ -4,4 +4,4 @@
 
 import {loadAllConfigs} from './src/load-all-configs'
 
-export const config = loadAllConfigs(process)
+export const config = loadAllConfigs(process) as Config
