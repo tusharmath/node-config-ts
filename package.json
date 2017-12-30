@@ -9,8 +9,8 @@
   },
   "scripts": {
     "test": "mocha",
-    "postinstall": "node_modules/.bin/tsc",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+    "postinstall": "node_modules/.bin/tsc -d",
+    "semantic-release": "semantic-release"
   },
   "bin": "./bin/cli",
   "devDependencies": {
