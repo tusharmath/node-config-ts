@@ -1,3 +1,5 @@
+///<reference path="../global.d.ts"/>
+
 /**
  * Created by tushar on 30/12/17.
  */
