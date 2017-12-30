@@ -1,0 +1,31 @@
+{
+  "name": "d11-config",
+  "version": "0.0.0-development",
+  "dependencies": {
+    "json-to-ts": "^1.5.4",
+    "minimist": "^1.2.0",
+    "module-exists": "^0.1.1",
+    "ramda": "^0.25.0"
+  },
+  "scripts": {
+    "test": "mocha",
+    "postinstall": "tsc",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+  },
+  "bin": "./bin/cli",
+  "devDependencies": {
+    "cz-conventional-changelog": "^2.1.0",
+    "mocha": "^4.1.0",
+    "typescript": "^2.6.2",
+    "semantic-release": "^11.0.2"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tusharmath/node-config-ts.git"
+  }
+}
