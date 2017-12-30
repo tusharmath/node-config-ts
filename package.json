@@ -1,5 +1,5 @@
 {
-  "name": "d11-config",
+  "name": "node-config-ts",
   "version": "0.0.0-development",
   "dependencies": {
     "json-to-ts": "^1.5.4",
