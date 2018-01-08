@@ -15,9 +15,9 @@ A simple configuration manager for typescript based projects.
 2. Add a `postinstall` step
     ```json
     {
-         "scripts" : {
-             "postinstall": "node-config-ts"
-         }
+       "scripts" : {
+         "postinstall": "node-config-ts"
+       }
     }
     ```
 
@@ -109,7 +109,7 @@ With `node-config-ts` you can trust the typescript compiler to issue an error im
     #### user/john.json
     ```json
     {
-      "baseURL": '/api'
+      "baseURL": "/api"
     }
     ```
     
@@ -118,7 +118,7 @@ With `node-config-ts` you can trust the typescript compiler to issue an error im
     ```json
     {
       "port": 3000,
-      "baseURL": '/api'
+      "baseURL": "/api"
     }
     ```
 
