@@ -3,7 +3,7 @@ node-config-ts
 [![Build Status](https://travis-ci.org/tusharmath/node-config-ts.svg?branch=master)](https://travis-ci.org/tusharmath/node-config-ts)
 [![Greenkeeper badge](https://badges.greenkeeper.io/tusharmath/node-config-ts.svg)](https://greenkeeper.io/)
 
-A simple node configuration manager for typescript based projects.
+A simple configuration manager for typescript based projects.
 
 ## Usage
 
@@ -94,3 +94,51 @@ In the above case even if the `default.json` has a port setting of `9000` the cl
     "port": 9000
 }
 ```
+## Differences with node-config
+1. **No reserved words:** With [node-config] you can not use a certain set of [reserved words] in your configuration. This is an unnecessary restriction and `node-config-ts` doesn't have it.
+2. **Simpler API:** Instead of using methods such as `config.get('xxx')` in `node-config` you can simply use the exported `config` object.
+3. **Warnings & Errors:** [node-config] relies on calling the `get` and the `has` methods to issue errors. This is unsafe typically when the configurations are different between your dev and production environments.
+With `node-config-ts` you can trust the typescript compiler to issue an error immediately when you try to access a property that isn't defined anywhere. Consider the following case —
+
+    #### default.json
+    ```json
+    {
+      "port": 3000
+    }
+    ```
+    #### user/john.json
+    ```json
+    {
+      "baseURL": '/api'
+    }
+    ```
+    
+    In the above case the final configuration *should* look something like this on `john`'s local machine —
+    
+    ```json
+    {
+      "port": 3000,
+      "baseURL": '/api'
+    }
+    ```
+
+    ##### reading using node-config:
+    ```ts
+    import config from 'config'
+
+    console.log(config.get('port'))
+    console.log(config.get('baseURL')) // works locally but fails in production
+    ```
+    This would work when `john` is running the application on his local machine. But as soon as its deployed in production the configuration property `baseURL` isn't available anymore and it results in runtime exceptions.
+
+    ##### using node-config-ts:
+    ```ts
+    import {config} from 'node-config-ts'
+
+    console.log(config.port) // proper intellisense support
+    console.log(config.baseURL) // throws compile time error immediately on local machine.
+    ```
+    Because the above object `config`, is exposed with proper typings, using invalid configurations results in typescript errors. This would happen on both — `john`'s computer and the production server.
+    
+[node-config]:     https://github.com/lorenwest/node-config
+[reserved words]:  https://github.com/lorenwest/node-config/wiki/Reserved-Words
