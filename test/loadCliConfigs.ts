@@ -12,10 +12,8 @@ describe('load-cli-configs', () => {
     }
     const actual = loadCLIConfigs(process)
     const expected = {
-      cliConfig: {
-        port: '100',
-        env: 'production'
-      }
+      port: '100',
+      env: 'production'
     }
     assert.deepEqual(actual, expected)
   })

@@ -10,13 +10,15 @@ describe('load-all-configs', () => {
       env: {
         DEPLOYMENT: 'www.example.com',
         NODE_ENV: 'production',
-        USER: 'root'
+        USER: 'root',
+        MAX_RETRIES: 999
       }
     }
     const actual = loadAllConfigs(process)
     const expected = {
       type: 'user',
-      port: 9000
+      port: 9000,
+      maxRetries: 999
     }
     assert.deepEqual(actual, expected)
   })
@@ -27,14 +29,16 @@ describe('load-all-configs', () => {
       env: {
         DEPLOYMENT: 'www.example.com',
         NODE_ENV: 'production',
-        USER: 'root'
+        USER: 'root',
+        MAX_RETRIES: 999
       }
     }
     const actual = loadAllConfigs(process)
     const expected = {
       type: 'user',
       port: 3000,
-      wonder: 'woman'
+      wonder: 'woman',
+      maxRetries: 999
     }
     assert.deepEqual(actual, expected)
   })
