@@ -1,6 +1,6 @@
 import * as assert from 'assert'
 import * as path from 'path'
-import {loadAllConfigs} from '../src/loadAllConfigs'
+import {mergeAllConfigs} from '../src/mergeAllConfigs'
 
 describe('load-all-configs', () => {
   it('should load configs from all the places', () => {
@@ -14,7 +14,7 @@ describe('load-all-configs', () => {
         MAX_RETRIES: 999
       }
     }
-    const actual = loadAllConfigs(process)
+    const actual = mergeAllConfigs(process)
     const expected = {
       type: 'user',
       port: 9000,
@@ -33,7 +33,7 @@ describe('load-all-configs', () => {
         MAX_RETRIES: 999
       }
     }
-    const actual = loadAllConfigs(process)
+    const actual = mergeAllConfigs(process)
     const expected = {
       type: 'user',
       port: 3000,

@@ -9,7 +9,7 @@ import {replaceWithEnvVar} from './replaceWithEnvVar'
 /**
  * Loads all the configs from files and cli and merges them.
  */
-export const loadAllConfigs = (process: any) => {
+export const mergeAllConfigs = (process: any) => {
   const fileConfigs = loadFileConfigs(process)
   const fileConfig = R.reduce(R.mergeDeepRight, fileConfigs.defaultConfig, [
     fileConfigs.envConfig,
