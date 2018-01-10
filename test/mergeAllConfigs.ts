@@ -2,7 +2,7 @@ import * as assert from 'assert'
 import * as path from 'path'
 import {mergeAllConfigs} from '../src/mergeAllConfigs'
 
-describe('load-all-configs', () => {
+describe('mergeAllConfigs()', () => {
   it('should load configs from all the places', () => {
     const process = {
       argv: [],

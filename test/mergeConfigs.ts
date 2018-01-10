@@ -2,9 +2,9 @@
  * Created by tushar on 30/12/17.
  */
 import * as assert from 'assert'
-import {mergeConfigs} from '../src/mergeConfigs'
+import {mergeFileConfigs} from '../src/mergeFileConfigs'
 
-describe('merge-config', () => {
+describe('mergeFileConfigs()', () => {
   it('should return defaultConfig by default', () => {
     const configs = {
       defaultConfig: {a: 1},
@@ -13,7 +13,7 @@ describe('merge-config', () => {
       userConfig: {},
       cliConfig: {}
     }
-    const actual = mergeConfigs(configs)
+    const actual = mergeFileConfigs(configs)
     const expected = {a: 1}
     assert.deepEqual(actual, expected)
   })
@@ -25,7 +25,7 @@ describe('merge-config', () => {
       userConfig: {},
       cliConfig: {}
     }
-    const actual = mergeConfigs(configs)
+    const actual = mergeFileConfigs(configs)
     const expected = {a: 0, b: 2, c: 3}
     assert.deepEqual(actual, expected)
   })
@@ -37,7 +37,7 @@ describe('merge-config', () => {
       userConfig: {},
       cliConfig: {}
     }
-    const actual = mergeConfigs(configs)
+    const actual = mergeFileConfigs(configs)
     const expected = {a: 0, b: 2, c: 4, d: 5}
     assert.deepEqual(actual, expected)
   })
@@ -49,20 +49,8 @@ describe('merge-config', () => {
       userConfig: {d: 6, e: 7},
       cliConfig: {}
     }
-    const actual = mergeConfigs(configs)
+    const actual = mergeFileConfigs(configs)
     const expected = {a: 0, b: 2, c: 4, d: 6, e: 7}
-    assert.deepEqual(actual, expected)
-  })
-  it('should override with cliConfig', () => {
-    const configs = {
-      defaultConfig: {a: 0, b: 1},
-      envConfig: {b: 2, c: 3},
-      deploymentConfig: {c: 4, d: 5},
-      userConfig: {d: 6, e: 7},
-      cliConfig: {e: 8, f: 9}
-    }
-    const actual = mergeConfigs(configs)
-    const expected = {a: 0, b: 2, c: 4, d: 6, e: 8, f: 9}
     assert.deepEqual(actual, expected)
   })
   it('should merge deeply', () => {
@@ -73,7 +61,7 @@ describe('merge-config', () => {
       userConfig: {},
       cliConfig: {}
     }
-    const actual = mergeConfigs(configs)
+    const actual = mergeFileConfigs(configs)
     const expected = {a: {b: {c0: 1, c1: 2}}}
     assert.deepEqual(actual, expected)
   })
