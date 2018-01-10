@@ -5,7 +5,7 @@
  */
 import moduleExists = require('module-exists')
 import * as R from 'ramda'
-import {configPaths} from './config-paths'
+import {configPaths} from './configPaths'
 
 /**
  * Loads the configs provided in the {ConfigPaths}

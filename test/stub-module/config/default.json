@@ -1,4 +1,5 @@
 {
   "type": "default",
-  "port": 9000
+  "port": 9000,
+  "maxRetries": "@@MAX_RETRIES"
 }

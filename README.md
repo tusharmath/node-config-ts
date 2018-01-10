@@ -5,6 +5,19 @@ node-config-ts
 
 A simple configuration manager for typescript based projects.
 
+## Table of contents
+1.  [Usage](#usage)
+
+2.  [Configuration](#configuration)
+    
+    a.  [Using Files](#using-files) 
+    
+    b.  [Using Environment Variables](#using-environment-variables) 
+    
+    c.  [Using Commandline Params](#using-commandline-params)
+     
+3. [Differences With Node Config](#differences-with-node-config)
+
 ## Usage
 
 1. Install package 
@@ -43,7 +56,16 @@ A simple configuration manager for typescript based projects.
     console.log(config) // logs the config data from default.json    
     ```
 
-## Directory Structure
+## Configuration
+The configs are merged in the following order of priority —
+
+1. Commandline params
+2. Environment variable
+2. User specific config file
+3. Deployment specific config file
+4. Environment specific config file
+
+### Using files
 Configurations are loaded via config files that are written in JSON format for now. A typical project looks like this —
 
 ```
@@ -63,7 +85,7 @@ root/
         └── sara.json
 ```
 
-There are three directories in which a project can have configurations — `deployment`, `env` and `user`. These directories can have multiple files inside them and based on the environment variables an appropriate config file is selected for overriding the base `default.json`. For instance if the `NODE_ENV` variable is set to `production` the `env/production.json` configuration will be merged with `default.json`. Similarly if `DEPLOYMENT` env variable is set to `staging.example.com` then `deployment/staging.example.com.json`  is merged with the other configs. Here is a table for environment to directory mapping —
+There are three directories in which a project can have configurations — `deployment`, `env` and `user`. These directories can have multiple files inside them and based on the environment variables an appropriate config file is selected for overriding the base `default.json`. For example if the `NODE_ENV` variable is set to `production` the `env/production.json` configuration will be merged with `default.json` and override default values with its own. Similarly if `DEPLOYMENT` env variable is set to `staging.example.com` then `deployment/staging.example.com.json`  is merged with the other configs. Here is a table for environment to directory mapping —
 
 
 | **process.env** | **directory**      |
@@ -72,16 +94,25 @@ There are three directories in which a project can have configurations — `depl
 | DEPLOYMENT      | /config/deployment |
 | USER            | /config/user       |
 
-## Configuration Priority
+### Using environment variables
+Whenever the value is prefixed with the letters `@@` **node-config-ts** automatically looks for an environment variable with that name. For example — 
 
-The configs are merged in the following order of priority —
+```json
+// default.json
+{
+  "port": "@@APP_PORT"
+}
+```
+In the above case automatically the value of `port` is set to the value that's available inside the environment variable `PORT`.
 
-1. Commandline
-2. User
-3. Deployment
-4. Environment
+```bash
+export APP_PORT=3000
+node server.js // server started with config.port as 3000
+```
 
-The command line arguments can override  all the configuration params. This is useful when you want to start a node server by passing the port externally  —
+### Using commandline params
+
+The command line arguments can override all the configuration params. This is useful when you want to start a node server by passing the port externally —
 
 ```bash
 node server.js --port 3000
@@ -94,6 +125,7 @@ In the above case even if the `default.json` has a port setting of `9000` the cl
     "port": 9000
 }
 ```
+
 ## Differences with node-config
 1. **No reserved words:** With [node-config] you can not use a certain set of [reserved words] in your configuration. This is an unnecessary restriction and `node-config-ts` doesn't have it.
 2. **Simpler API:** Instead of using methods such as `config.get('xxx')` in `node-config` you can simply use the exported `config` object.

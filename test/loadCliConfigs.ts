@@ -3,7 +3,7 @@
  */
 
 import * as assert from 'assert'
-import {loadCLIConfigs} from '../src/load-cli-configs'
+import {loadCLIConfigs} from '../src/loadCliConfigs'
 
 describe('load-cli-configs', () => {
   it('should load configs from cli', () => {
@@ -12,10 +12,8 @@ describe('load-cli-configs', () => {
     }
     const actual = loadCLIConfigs(process)
     const expected = {
-      cliConfig: {
-        port: '100',
-        env: 'production'
-      }
+      port: '100',
+      env: 'production'
     }
     assert.deepEqual(actual, expected)
   })
