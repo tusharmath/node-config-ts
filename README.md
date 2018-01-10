@@ -5,6 +5,14 @@ node-config-ts
 
 A simple configuration manager for typescript based projects.
 
+Table of content 
+ 1. [Usage]
+ 2. [Configuration]
+    a. [Using files]
+    b. [Using environment variables]
+    c. [Using commandline params]
+ 3. [Differences with node-config]
+
 ## Usage
 
 1. Install package 
@@ -43,7 +51,7 @@ A simple configuration manager for typescript based projects.
     console.log(config) // logs the config data from default.json    
     ```
 
-# Configuration
+## Configuration
 The configs are merged in the following order of priority —
 
 1. Commandline params
@@ -52,7 +60,7 @@ The configs are merged in the following order of priority —
 3. Deployment specific config file
 4. Environment specific config file
 
-## Configuring using files
+### Using files
 Configurations are loaded via config files that are written in JSON format for now. A typical project looks like this —
 
 ```
@@ -81,7 +89,7 @@ There are three directories in which a project can have configurations — `depl
 | DEPLOYMENT      | /config/deployment |
 | USER            | /config/user       |
 
-## Using environment Variables
+### Using environment variables
 Whenever the value is prefixed with the letters `@@` **node-config-ts** automatically looks for an environment variable with that name. For example — 
 
 ```json
@@ -97,7 +105,7 @@ export APP_PORT=3000
 node server.js // server started with config.port as 3000
 ```
 
-## Using commandline params
+### Using commandline params
 
 The command line arguments can override all the configuration params. This is useful when you want to start a node server by passing the port externally —
 
