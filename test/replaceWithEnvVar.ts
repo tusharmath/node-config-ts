@@ -1,10 +1,10 @@
 /**
  * Created by tushar on 10/01/18.
  */
-import {applyEnvVariables} from '../src/applyEnvVariables'
+import {replaceWithEnvVar} from '../src/replaceWithEnvVar'
 import * as assert from 'assert'
 
-describe('applyEnvVariables', () => {
+describe('replaceWithEnvVar', () => {
   it('should merge base config with available env variables', () => {
     const process = {
       env: {
@@ -15,7 +15,7 @@ describe('applyEnvVariables', () => {
       a: 'a',
       b: '@@PORT'
     }
-    const actual = applyEnvVariables(baseConfig, process)
+    const actual = replaceWithEnvVar(baseConfig, process)
     const expected = {...baseConfig, b: '5050'}
     assert.deepEqual(actual, expected)
   })
@@ -33,7 +33,7 @@ describe('applyEnvVariables', () => {
         }
       }
     }
-    const actual = applyEnvVariables(baseConfig, process)
+    const actual = replaceWithEnvVar(baseConfig, process)
     const expected = {a: {b: {c: '5050'}}}
     assert.deepEqual(actual, expected)
   })

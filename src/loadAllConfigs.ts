@@ -4,7 +4,7 @@
 import R = require('ramda')
 import {loadCLIConfigs} from './loadCliConfigs'
 import {loadFileConfigs} from './loadFileConfigs'
-import {applyEnvVariables} from './applyEnvVariables'
+import {replaceWithEnvVar} from './replaceWithEnvVar'
 
 /**
  * Loads all the configs from files and cli and merges them.
@@ -18,5 +18,5 @@ export const loadAllConfigs = (process: any) => {
   ])
 
   const cliConfig = loadCLIConfigs(process).cliConfig
-  return R.mergeDeepRight(applyEnvVariables(fileConfig, process), cliConfig)
+  return R.mergeDeepRight(replaceWithEnvVar(fileConfig, process), cliConfig)
 }
