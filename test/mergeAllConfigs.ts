@@ -42,4 +42,23 @@ describe('mergeAllConfigs()', () => {
     }
     assert.deepEqual(actual, expected)
   })
+  it('should override ENV variables with cli configs', () => {
+    const process = {
+      argv: ['--port', '3000', '--maxRetries', '150'],
+      cwd: () => path.resolve(__dirname, 'stub-module'),
+      env: {
+        DEPLOYMENT: 'www.example.com',
+        NODE_ENV: 'production',
+        USER: 'root',
+        MAX_RETRIES: 999
+      }
+    }
+    const actual = mergeAllConfigs(process)
+    const expected = {
+      type: 'user',
+      port: 3000,
+      maxRetries: 150
+    }
+    assert.deepEqual(actual, expected)
+  })
 })
