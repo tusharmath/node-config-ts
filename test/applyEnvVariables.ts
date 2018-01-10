@@ -1,7 +1,7 @@
 /**
  * Created by tushar on 10/01/18.
  */
-import {applyEnvVariables} from '../src/apply-env-variables'
+import {applyEnvVariables} from '../src/applyEnvVariables'
 import * as assert from 'assert'
 
 describe('applyEnvVariables', () => {

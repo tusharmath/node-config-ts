@@ -1,6 +1,6 @@
 import * as assert from 'assert'
 import * as path from 'path'
-import {loadAllConfigs} from '../src/load-all-configs'
+import {loadAllConfigs} from '../src/loadAllConfigs'
 
 describe('load-all-configs', () => {
   it('should load configs from all the places', () => {

@@ -2,7 +2,7 @@
  * Created by tushar on 30/12/17.
  */
 import * as assert from 'assert'
-import {configPaths} from '../src/config-paths'
+import {configPaths} from '../src/configPaths'
 
 describe('config-paths', () => {
   describe('default', () => {

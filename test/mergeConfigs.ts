@@ -2,7 +2,7 @@
  * Created by tushar on 30/12/17.
  */
 import * as assert from 'assert'
-import {mergeConfigs} from '../src/merge-configs'
+import {mergeConfigs} from '../src/mergeConfigs'
 
 describe('merge-config', () => {
   it('should return defaultConfig by default', () => {

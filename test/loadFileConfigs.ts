@@ -4,7 +4,7 @@
 
 import * as assert from 'assert'
 import * as path from 'path'
-import {loadFileConfigs} from '../src/load-file-configs'
+import {loadFileConfigs} from '../src/loadFileConfigs'
 import * as defaultConfig from './stub-module/config/default.json'
 import * as deploymentConfig from './stub-module/config/deployment/www.example.com.json'
 import * as envConfig from './stub-module/config/env/production.json'

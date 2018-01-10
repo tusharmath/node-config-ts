@@ -2,9 +2,9 @@
  * Created by tushar on 30/12/17.
  */
 import R = require('ramda')
-import {loadCLIConfigs} from './load-cli-configs'
-import {loadFileConfigs} from './load-file-configs'
-import {mergeConfigs} from './merge-configs'
+import {loadCLIConfigs} from './loadCliConfigs'
+import {loadFileConfigs} from './loadFileConfigs'
+import {mergeConfigs} from './mergeConfigs'
 
 /**
  * Loads all the configs from files and cli and merges them.
