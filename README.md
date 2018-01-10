@@ -5,12 +5,17 @@ node-config-ts
 
 A simple configuration manager for typescript based projects.
 
-Table of content 
-1. [Usage](#usage)
-2. [Configuration](#configuration)
-   a. [Using Files](#using-files)
-   b. [Using Environment Variables](#using-environment-variables)
-   c. [Using Commandline Params](#using-commandline-params)
+## Table of contents
+1.  [Usage](#usage)
+
+2.  [Configuration](#configuration)
+    
+    a.  [Using Files](#using-files) 
+    
+    b.  [Using Environment Variables](#using-environment-variables) 
+    
+    c.  [Using Commandline Params](#using-commandline-params)
+     
 3. [Differences With Node Config](#differences-with-node-config)
 
 ## Usage
