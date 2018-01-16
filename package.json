@@ -2,6 +2,7 @@
   "name": "node-config-ts",
   "version": "0.0.0-development",
   "dependencies": {
+    "@types/node": "^9.3.0",
     "json-to-ts": "^1.5.4",
     "minimist": "^1.2.0",
     "module-exists": "^0.2.0",
@@ -15,13 +16,13 @@
   "bin": "./bin/cli",
   "devDependencies": {
     "@types/minimist": "^1.2.0",
-    "@types/mocha": "^2.2.45",
-    "@types/ramda": "^0.25.12",
+    "@types/mocha": "^2.2.46",
+    "@types/ramda": "^0.25.15",
     "cz-conventional-changelog": "^2.1.0",
     "mocha": "^4.1.0",
-    "semantic-release": "^11.0.2",
-    "typescript": "^2.6.2",
-    "ts-node": "^4.1.0"
+    "semantic-release": "^12.2.2",
+    "ts-node": "^4.1.0",
+    "typescript": "^2.6.2"
   },
   "config": {
     "commitizen": {
