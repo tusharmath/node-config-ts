@@ -10,7 +10,7 @@
   },
   "scripts": {
     "test": "mocha",
-    "prepublish": "node_modules/.bin/tsc -d",
+    "prepare": "node_modules/.bin/tsc -d",
     "semantic-release": "semantic-release"
   },
   "bin": "./bin/cli",
