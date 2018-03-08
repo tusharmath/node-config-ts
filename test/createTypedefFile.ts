@@ -1,29 +1,46 @@
 import {createTypeDefFile} from '../src/createTypedefFile'
 import * as assert from 'assert'
-
-const data = `/* tslint:disable */\ninterface Config {\n  require: string;\n  ui: string;\n  reporter: string;\n  grep: string;\n}`
+import * as path from 'path'
 
 describe('createTypedefFile', () => {
+  const stubPath = path.resolve(__dirname, 'stub-module')
   it('should create typedefs in the config dir', () => {
+    const expectedData = `
+/* tslint:disable */
+interface Config {
+  type: string;
+  port: number;
+  maxRetries: number;
+}`
     const process = {
       argv: [],
-      cwd: () => '/www/apphub.com'
+      cwd: () => stubPath,
+      env: {
+        MAX_RETRIES: 45
+      }
     }
     const actual = createTypeDefFile(process)
-    const expected = {data, filePath: '/www/apphub.com/config/Config.d.ts'}
-    assert.deepEqual(actual, expected)
+    const expectedFilePath = `${stubPath}/config/Config.d.ts`
+    assert.strictEqual(actual.filePath, expectedFilePath)
+    assert.strictEqual(actual.data, expectedData)
   })
 
   it('should create typedefs in the custom-config dir', () => {
+    const expectedData = `
+/* tslint:disable */
+interface Config {
+  hello: string;
+}`
     const process = {
-      argv: ['custom-config'],
-      cwd: () => '/www/apphub.com'
+      argv: ['config-random'],
+      cwd: () => stubPath,
+      env: {
+        MAX_RETRIES: 45
+      }
     }
     const actual = createTypeDefFile(process)
-    const expected = {
-      data,
-      filePath: '/www/apphub.com/custom-config/Config.d.ts'
-    }
-    assert.deepEqual(actual, expected)
+    const expectedFilePath = `${stubPath}/config-random/Config.d.ts`
+    assert.strictEqual(actual.filePath, expectedFilePath)
+    assert.strictEqual(actual.data, expectedData)
   })
 })

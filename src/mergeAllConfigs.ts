@@ -9,6 +9,8 @@ import {mergeFileConfigs} from './mergeFileConfigs'
 
 /**
  * Loads all the configs from files and cli and merges them.
+ * @param {Process} process
+ * @return {Config}
  */
 export const mergeAllConfigs = R.converge(R.mergeDeepRight, [
   R.converge(replaceWithEnvVar, [
