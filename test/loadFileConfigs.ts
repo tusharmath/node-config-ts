@@ -13,6 +13,7 @@ import * as userConfig from './stub-module/config/user/root.json'
 describe('load-file-configs', () => {
   it('should load the configs that are available', () => {
     const process = {
+      argv: [],
       cwd: () => path.resolve(__dirname, 'stub-module'),
       env: {
         DEPLOYMENT: 'www.example.com',
@@ -32,6 +33,7 @@ describe('load-file-configs', () => {
 
   it('should load default configs when not available', () => {
     const process = {
+      argv: [],
       cwd: () => path.resolve(__dirname, 'stub-module'),
       env: {
         DEPLOYMENT: 'www.example.com',

@@ -61,4 +61,24 @@ describe('mergeAllConfigs()', () => {
     }
     assert.deepEqual(actual, expected)
   })
+  it('should read the passed directory if available', () => {
+    const process = {
+      argv: ['config-random', '--port', '3000', '--maxRetries', '150'],
+      cwd: () => path.resolve(__dirname, 'stub-module'),
+      env: {
+        DEPLOYMENT: 'www.example.com',
+        NODE_ENV: 'production',
+        USER: 'root',
+        MAX_RETRIES: 999
+      }
+    }
+    const actual = mergeAllConfigs(process)
+    const expected = {
+      type: 'user',
+      port: 3000,
+      maxRetries: 150,
+      hello: 'world'
+    }
+    assert.deepEqual(actual, expected)
+  })
 })
