@@ -4,10 +4,9 @@
 
 import * as path from 'path'
 import {config} from '../index'
-import {basePath} from "./basePath";
+import {basePath} from './basePath'
 
 const JsonToTS = require('json-to-ts')
-
 
 const FILE_NAME = 'Config.d.ts'
 export const createTypeDefFile = (process: any) => {
@@ -17,4 +16,3 @@ export const createTypeDefFile = (process: any) => {
     .join('\n')
   return {filePath, data}
 }
-

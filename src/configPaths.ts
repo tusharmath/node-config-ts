@@ -3,16 +3,13 @@
  */
 
 import * as path from 'path'
-import {basePath} from "./basePath";
+import {basePath} from './basePath'
 
 const DEFAULT_FILENAME = 'default'
 
 export const configPaths = (process: any) => {
   const _basePath = basePath(process)
-  const defaultConfig = path.resolve(
-    _basePath,
-    `${DEFAULT_FILENAME}.json`
-  )
+  const defaultConfig = path.resolve(_basePath, `${DEFAULT_FILENAME}.json`)
   const envConfig = path.resolve(
     _basePath,
     `env/${process.env['NODE_ENV'] || DEFAULT_FILENAME}.json`

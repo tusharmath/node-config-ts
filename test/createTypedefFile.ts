@@ -20,7 +20,10 @@ describe('createTypedefFile', () => {
       cwd: () => '/www/apphub.com'
     }
     const actual = createTypeDefFile(process)
-    const expected = {data, filePath: '/www/apphub.com/custom-config/Config.d.ts'}
+    const expected = {
+      data,
+      filePath: '/www/apphub.com/custom-config/Config.d.ts'
+    }
     assert.deepEqual(actual, expected)
   })
 })
