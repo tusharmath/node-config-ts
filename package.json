@@ -2,7 +2,7 @@
   "name": "node-config-ts",
   "version": "0.0.0-development",
   "dependencies": {
-    "@types/node": "^9.3.0",
+    "@types/node": "^10.0.3",
     "json-to-ts": "^1.5.4",
     "minimist": "^1.2.0",
     "module-exists": "^0.2.0",
