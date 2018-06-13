@@ -1,5 +1,8 @@
 # Created by .ignore support plugin (hsz.mobi)
 
 !*.js
-!*.map
-!.d.ts
+*.ts
+.idea/
+test/
+*.map
+*.tgz
