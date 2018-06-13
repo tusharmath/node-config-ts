@@ -17,12 +17,12 @@
   "devDependencies": {
     "@types/minimist": "^1.2.0",
     "@types/mocha": "^5.0.0",
-    "@types/ramda": "^0.25.15",
+    "@types/ramda": "^0.25.32",
     "cz-conventional-changelog": "^2.1.0",
     "mocha": "^5.0.0",
     "semantic-release": "^15.0.0",
-    "ts-node": "^4.1.0",
-    "typescript": "^2.6.2"
+    "ts-node": "^6.0.0",
+    "typescript": "^2.9.1"
   },
   "config": {
     "commitizen": {
