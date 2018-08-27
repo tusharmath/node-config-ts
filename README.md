@@ -66,14 +66,13 @@ If your project uses [webpack] then with the `NodeConfigTSPlugin` you can easily
 
 [webpack]: https://webpack.js.org
 
+**webpack.config.ts**
 ```ts
 import { NodeConfigTSPlugin } from 'node-config-ts/webpack'
 
-// webpack.config.ts
-export = {
+export = NodeConfigTSPlugin({
   // .. other stuff
-  plugins: [NodeConfigTsPlugin()]
-}
+})
 ```
 
 ## Configuration
