@@ -123,9 +123,9 @@
   version "10.9.2"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-10.9.2.tgz#f0ab8dced5cd6c56b26765e1c0d9e4fdcc9f2a00"
 
-"@types/ramda@^0.25.32":
-  version "0.25.36"
-  resolved "https://registry.yarnpkg.com/@types/ramda/-/ramda-0.25.36.tgz#1ddaf3211c7cd7046fcaefe68c713469ccfc9504"
+"@types/ramda@^0.26.0":
+  version "0.26.0"
+  resolved "https://registry.yarnpkg.com/@types/ramda/-/ramda-0.26.0.tgz#ce45c2c61b3e510f907cc84941c8cdb99f089b6a"
 
 "@types/tapable@*":
   version "1.0.4"
