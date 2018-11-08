@@ -13,7 +13,7 @@ export const configPaths = (process: any) => {
     configDir,
     `config/${DEFAULT_FILENAME}.json`
   )
-  const envConfig = path.resolve(  
+  const envConfig = path.resolve(
     process.cwd(),
     configDir,
     `config/env/${process.env['NODE_ENV'] || DEFAULT_FILENAME}.json`
