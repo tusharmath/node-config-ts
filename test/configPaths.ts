@@ -41,6 +41,34 @@ describe('config-paths', () => {
     })
   })
 
+  describe('NODE_CONFIG_DIR', () => {
+    it('should return actual config path', () => {
+      const process = {
+        env: {
+          NODE_ENV: 'production',
+          NODE_CONFIG_DIR: 'sub-dir'
+        },
+        cwd: () => '/app/www.bravo.com/server'
+      }
+      const actual = configPaths(process).envConfig
+      const expected = '/app/www.bravo.com/server/sub-dir/config/env/production.json'
+
+      assert.deepEqual(actual, expected)
+    })
+    it('should return default config path', () => {
+      const process = {
+        env: {
+          NODE_CONFIG_DIR: 'sub-dir'
+        },
+        cwd: () => '/app/www.bravo.com/server'
+      }
+      const actual = configPaths(process).envConfig
+      const expected = '/app/www.bravo.com/server/sub-dir/config/env/default.json'
+
+      assert.deepEqual(actual, expected)
+    })
+  })
+
   describe('DEPLOYMENT', () => {
     it('should return actual config path', () => {
       const process = {
