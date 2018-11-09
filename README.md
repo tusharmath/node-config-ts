@@ -14,6 +14,7 @@ A simple configuration manager for typescript based projects.
     a. [Using Files](#using-files)
     b. [Using Environment Variables](#using-environment-variables)
     c. [Using Commandline Params](#using-commandline-params)
+    d. [Custom Config Directory](#custom-config-directory)
 4.  [Differences With Node Config](#differences-with-node-config)
 
 ## Usage
@@ -55,7 +56,7 @@ A simple configuration manager for typescript based projects.
 5. Import and use `node-config-ts`
 
    ```typescript
-   import { config } from 'node-config-ts'
+   import {config} from 'node-config-ts'
 
    console.log(config) // logs the config data from default.json
    ```
@@ -67,8 +68,9 @@ If your project uses [webpack] then with the `NodeConfigTSPlugin` you can easily
 [webpack]: https://webpack.js.org
 
 **webpack.config.ts**
+
 ```ts
-import { NodeConfigTSPlugin } from 'node-config-ts/webpack'
+import {NodeConfigTSPlugin} from 'node-config-ts/webpack'
 
 export = NodeConfigTSPlugin({
   // .. other stuff
@@ -136,6 +138,10 @@ In the above case automatically the value of `port` is set to the value that's a
 export APP_PORT=3000
 node server.js // server started with config.port as 3000
 ```
+
+### Custom Config Directory
+
+By default the base directory for loading configs is `config`. This can be configured using the ENV variable `NODE_CONFIG_TS_DIR`.
 
 ### Using commandline params
 
