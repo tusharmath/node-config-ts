@@ -7,14 +7,14 @@ import {baseConfigPath} from './baseConfigPath'
 
 const DEFAULT_FILENAME = 'default'
 
-type ConfigType = {
+export type ConfigTypes = {
   defaultConfig: string
   envConfig: string
   deploymentConfig: string
   userConfig: string
 }
 
-type NonConfigEnv = {
+export type NonConfigEnv = {
   cwd(): string
   env: {
     NODE_ENV?: string
@@ -24,7 +24,7 @@ type NonConfigEnv = {
   }
 }
 
-export const configPaths = <T extends NonConfigEnv>(process: T): ConfigType => {
+export const configPaths = <T extends NonConfigEnv>(process: T): ConfigTypes => {
   const baseDIR = baseConfigPath(process)
   const defaultConfig = path.resolve(
     process.cwd(),
