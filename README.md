@@ -11,10 +11,10 @@ A simple configuration manager for typescript based projects.
 1.  [Usage](#usage)
 2.  [Usage with webpack](#usage-with-webpack)
 3.  [Configuration](#configuration)
-    a. [Using Files](#using-files)
-    b. [Using Environment Variables](#using-environment-variables)
-    c. [Using Commandline Params](#using-commandline-params)
-    d. [Custom Config Directory](#custom-config-directory)
+    1. [Using Files](#using-files)
+    1. [Using Environment Variables](#using-environment-variables)
+    1. [Using Commandline Params](#using-commandline-params)
+    1. [Custom Config Directory](#custom-config-directory)
 4.  [Differences With Node Config](#differences-with-node-config)
 
 ## Usage
