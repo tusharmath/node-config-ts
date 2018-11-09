@@ -92,7 +92,7 @@ describe('config-paths', () => {
   describe('ENV:NODE_CONFIG_DIR', () => {
     it('should set base config dir', () => {
       const process = {
-        env: {NODE_ENV: 'production', NODE_CONFIG_DIR: './/main/config'},
+        env: {NODE_ENV: 'production', NODE_CONFIG_TS_DIR: './/main/config'},
         cwd: () => '/root'
       }
 
