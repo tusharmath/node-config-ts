@@ -3,9 +3,9 @@
  */
 
 import * as path from 'path'
+import {baseConfigPath} from './baseConfigPath'
 
 const DEFAULT_FILENAME = 'default'
-const DEFAULT_BASE_DIR = 'config'
 
 type ConfigType = {
   defaultConfig: string
@@ -15,7 +15,7 @@ type ConfigType = {
 }
 
 export const configPaths = (process: any): ConfigType => {
-  const baseDIR = process.env['NODE_CONFIG_DIR'] || DEFAULT_BASE_DIR
+  const baseDIR = baseConfigPath(process)
   const defaultConfig = path.resolve(
     process.cwd(),
     `${baseDIR}/${DEFAULT_FILENAME}.json`
