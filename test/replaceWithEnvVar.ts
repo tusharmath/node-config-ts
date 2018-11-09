@@ -8,7 +8,7 @@ describe('replaceWithEnvVar', () => {
   it('should merge base config with available env variables', () => {
     const process = {
       env: {
-        PORT: 5050
+        PORT: '5050'
       }
     }
     const baseConfig = {
@@ -23,7 +23,7 @@ describe('replaceWithEnvVar', () => {
   it('should merge with deeply nested configs also', () => {
     const process = {
       env: {
-        PORT: 5050
+        PORT: '5050'
       }
     }
     const baseConfig = {

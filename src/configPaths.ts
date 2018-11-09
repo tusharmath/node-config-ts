@@ -3,25 +3,45 @@
  */
 
 import * as path from 'path'
+import {baseConfigPath} from './baseConfigPath'
 
 const DEFAULT_FILENAME = 'default'
 
-export const configPaths = (process: any) => {
+export type ConfigTypes = {
+  defaultConfig: string
+  envConfig: string
+  deploymentConfig: string
+  userConfig: string
+}
+
+export type NonConfigEnv = {
+  cwd(): string
+  env: {
+    NODE_ENV?: string
+    DEPLOYMENT?: string
+    USER?: string
+    NODE_CONFIG_TS_DIR?: string
+  }
+}
+
+export const configPaths = <T extends NonConfigEnv>(process: T): ConfigTypes => {
+  const baseDIR = baseConfigPath(process)
   const defaultConfig = path.resolve(
     process.cwd(),
-    `config/${DEFAULT_FILENAME}.json`
+    `${baseDIR}/${DEFAULT_FILENAME}.json`
   )
   const envConfig = path.resolve(
     process.cwd(),
-    `config/env/${process.env['NODE_ENV'] || DEFAULT_FILENAME}.json`
+    `${baseDIR}/env/${process.env['NODE_ENV'] || DEFAULT_FILENAME}.json`
   )
   const deploymentConfig = path.resolve(
     process.cwd(),
-    `config/deployment/${process.env['DEPLOYMENT'] || DEFAULT_FILENAME}.json`
+    `${baseDIR}/deployment/${process.env['DEPLOYMENT'] ||
+      DEFAULT_FILENAME}.json`
   )
   const userConfig = path.resolve(
     process.cwd(),
-    `config/user/${process.env['USER'] || DEFAULT_FILENAME}.json`
+    `${baseDIR}/user/${process.env['USER'] || DEFAULT_FILENAME}.json`
   )
   return {defaultConfig, envConfig, deploymentConfig, userConfig}
 }
