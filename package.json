@@ -10,8 +10,8 @@
     "webpack": "^4.17.1"
   },
   "scripts": {
-    "test": "mocha",
-    "prepublish": "node_modules/.bin/tsc -d",
+    "test": "mocha --require=ts-node/register test/**.ts",
+    "prepublishOnly": "node_modules/.bin/tsc -d",
     "semantic-release": "semantic-release",
     "travis-deploy-once": "travis-deploy-once"
   },

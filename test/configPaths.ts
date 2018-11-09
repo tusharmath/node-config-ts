@@ -18,7 +18,7 @@ describe('config-paths', () => {
     })
   })
 
-  describe('NODE_ENV', () => {
+  describe('ENV:NODE_ENV', () => {
     it('should return actual config path', () => {
       const process = {
         env: {NODE_ENV: 'production'},
@@ -84,6 +84,25 @@ describe('config-paths', () => {
       }
       const actual = configPaths(process).userConfig
       const expected = '/app/www.bravo.com/server/config/user/default.json'
+
+      assert.deepEqual(actual, expected)
+    })
+  })
+
+  describe('ENV:NODE_CONFIG_DIR', () => {
+    it('should set base config dir', () => {
+      const process = {
+        env: {NODE_ENV: 'production', NODE_CONFIG_TS_DIR: './/main/config'},
+        cwd: () => '/root'
+      }
+
+      const actual = configPaths(process)
+      const expected = {
+        defaultConfig: '/root/main/config/default.json',
+        deploymentConfig: '/root/main/config/deployment/default.json',
+        envConfig: '/root/main/config/env/production.json',
+        userConfig: '/root/main/config/user/default.json'
+      }
 
       assert.deepEqual(actual, expected)
     })
