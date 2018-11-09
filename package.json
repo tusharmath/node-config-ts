@@ -11,7 +11,7 @@
   },
   "scripts": {
     "test": "mocha --require=ts-node/register test/**.ts",
-    "prepublish": "node_modules/.bin/tsc -d",
+    "prepublishOnly": "node_modules/.bin/tsc -d",
     "semantic-release": "semantic-release",
     "travis-deploy-once": "travis-deploy-once"
   },
