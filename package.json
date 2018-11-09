@@ -2,27 +2,31 @@
   "name": "node-config-ts",
   "version": "0.0.0-development",
   "dependencies": {
+    "@types/webpack": "^4.4.11",
     "json-to-ts": "^1.5.4",
     "minimist": "^1.2.0",
     "module-exists": "^0.2.0",
-    "ramda": "^0.25.0"
+    "ramda": "^0.25.0",
+    "webpack": "^4.17.1"
   },
   "scripts": {
-    "test": "mocha",
-    "prepublish": "node_modules/.bin/tsc -d",
-    "semantic-release": "semantic-release"
+    "test": "mocha --require=ts-node/register test/**.ts",
+    "prepublishOnly": "node_modules/.bin/tsc -d",
+    "semantic-release": "semantic-release",
+    "travis-deploy-once": "travis-deploy-once"
   },
   "bin": "./bin/cli",
   "devDependencies": {
-    "@types/node": "^10.0.3",
     "@types/minimist": "^1.2.0",
     "@types/mocha": "^5.0.0",
-    "@types/ramda": "^0.25.32",
+    "@types/node": "^10.0.3",
+    "@types/ramda": "^0.26.0",
     "cz-conventional-changelog": "^2.1.0",
     "mocha": "^5.0.0",
-    "semantic-release": "^15.0.0",
     "ts-node": "^7.0.0",
-    "typescript": "^2.9.1"
+    "semantic-release": "^15.9.9",
+    "travis-deploy-once": "^5.0.3",
+    "typescript": "^3.0.1"
   },
   "config": {
     "commitizen": {
