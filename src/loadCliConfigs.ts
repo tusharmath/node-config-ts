@@ -10,6 +10,6 @@ import * as R from 'ramda'
  * @param process
  * @return {{cliConfig: any}}
  */
-export const loadCLIConfigs = (process: any) => {
+export const loadCLIConfigs = (process: NodeJS.Process) => {
   return R.omit(['_'], minimist(process.argv))
 }

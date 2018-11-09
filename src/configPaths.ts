@@ -14,7 +14,17 @@ type ConfigType = {
   userConfig: string
 }
 
-export const configPaths = (process: any): ConfigType => {
+type NonConfigEnv = {
+  cwd(): string
+  env: {
+    NODE_ENV?: string
+    DEPLOYMENT?: string
+    USER?: string
+    NODE_CONFIG_TS_DIR?: string
+  }
+}
+
+export const configPaths = <T extends NonConfigEnv>(process: T): ConfigType => {
   const baseDIR = baseConfigPath(process)
   const defaultConfig = path.resolve(
     process.cwd(),
