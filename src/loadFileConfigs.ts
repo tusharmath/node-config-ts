@@ -3,9 +3,9 @@
 /**
  * Created by tushar on 30/12/17.
  */
-import moduleExists = require('module-exists')
+import * as fs from 'fs'
 import * as R from 'ramda'
-import {configPaths, NonConfigEnv, ConfigTypes} from './configPaths'
+import {configPaths, ConfigTypes, NonConfigEnv} from './configPaths'
 
 export type Configurations<T> = {[key in keyof T]: any}
 
@@ -19,7 +19,7 @@ export const loadFileConfigs = <T extends NonConfigEnv>(
   process: T
 ): Configurations<ConfigTypes> => {
   const itar: any = R.mapObjIndexed(
-    R.ifElse(moduleExists, require, R.always({}))
+    R.ifElse(fs.existsSync, require, R.always({}))
   )
   return itar(configPaths(process))
 }
