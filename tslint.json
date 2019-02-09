@@ -1,6 +1,9 @@
 {
   "defaultSeverity": "error",
-  "extends": ["tslint:all", "tslint-config-prettier"],
+  "extends": [
+    // "tslint:all",
+    "tslint-config-prettier"
+  ],
   "rules": {
     "typedef": [
       true,
@@ -8,11 +11,11 @@
       "parameter",
       "member-variable-declaration"
     ],
-    "no-any": true,
-    "no-inferred-empty-object-type": true,
+    // "no-any": true,
+    // "no-inferred-empty-object-type": true,
     "completed-docs": false,
     "comment-format": false,
-    "file-name-casing": [true, "kebab-case"],
+    // "file-name-casing": [true, "kebab-case"],
     "interface-over-type-literal": false
   },
   "rulesDirectory": []
