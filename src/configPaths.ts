@@ -24,7 +24,9 @@ export type NonConfigEnv = {
   }
 }
 
-export const configPaths = <T extends NonConfigEnv>(process: T): ConfigTypes => {
+export const configPaths = <T extends NonConfigEnv>(
+  process: T
+): ConfigTypes => {
   const baseDIR = baseConfigPath(process)
   const defaultConfig = path.resolve(
     process.cwd(),

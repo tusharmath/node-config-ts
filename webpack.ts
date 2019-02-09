@@ -1,5 +1,5 @@
-import { config } from './index'
-import { DefinePlugin, Configuration } from 'webpack'
+import {config} from './index'
+import {DefinePlugin, Configuration} from 'webpack'
 import * as R from 'ramda'
 
 const setConfigResolver = R.assocPath(
