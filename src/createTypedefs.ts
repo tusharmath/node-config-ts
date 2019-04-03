@@ -14,4 +14,8 @@ const ts = ['/* tslint:disable */', '/* eslint-disable */']
   .concat(JsonToTS(config, {rootName: 'Config'}))
   .join('\n')
 
-fs.writeFileSync(path.resolve(process.cwd(), baseConfigPath(process), file), ts)
+// Ensure the file generated finishes with a newline
+fs.writeFileSync(
+  path.resolve(process.cwd(), baseConfigPath(process), file),
+  `${ts}\n`
+)
