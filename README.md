@@ -209,7 +209,7 @@ This would work when `john` is running the application on his local machine. But
 import {config} from 'node-config-ts'
 
 console.log(config.port) // proper intellisense support
-console.log(config.baseURL) // throws compile time error immediately on local machine.
+console.log(config.baseURL) // throws compile time error immediately in production
 ```
 
 Because the above object `config`, is exposed with proper typings, using invalid configurations results in typescript errors. This would happen on both — `john`'s computer and the production server.
