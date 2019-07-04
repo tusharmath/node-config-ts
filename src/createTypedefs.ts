@@ -6,12 +6,21 @@ import * as fs from 'fs'
 import * as path from 'path'
 import {config} from '../index'
 import {baseConfigPath} from './baseConfigPath'
+import * as glob from 'glob';
 
 const JsonToTS = require('json-to-ts')
-
 const file = `Config.d.ts`
-const ts = ['/* tslint:disable */', '/* eslint-disable */']
+const defaultFileContent = ['/* tslint:disable */', '/* eslint-disable */']
+
+const configPaths = glob.sync('**/*/config', {ignore:  [
+    'coverage/**',
+    'node_modules/**',
+  ]})
+
+
+const ts = defaultFileContent
   .concat(JsonToTS(config, {rootName: 'Config'}))
   .join('\n')
+
 
 fs.writeFileSync(path.resolve(process.cwd(), baseConfigPath(process), file), ts)
