@@ -1,0 +1,6 @@
+{
+  "type": "default",
+  "port": 9000,
+  "maxRetries": "@@MAX_RETRIES",
+  "module1Props": "mod1"
+}
