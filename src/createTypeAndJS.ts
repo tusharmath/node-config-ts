@@ -31,7 +31,7 @@ const generateTypeDefs = () => {
     ]})
   configPaths.forEach((p) => {
     const config = mergeFileConfigsForPath(process, p)
-    if(fs.existsSync(path.resolve(process.cwd(), p, baseConfigPathName))){
+    if(fs.existsSync(path.resolve(process.cwd(), p))){
       fs.writeFileSync(path.resolve(process.cwd(), p, typeFile), getTsFileBuffer(config))
       fs.writeFileSync(path.resolve(process.cwd(), p, jsFile), getJsFileBuffer(config))
     }
