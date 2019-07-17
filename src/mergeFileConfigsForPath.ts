@@ -6,10 +6,19 @@ import {mergeFileConfigs} from './mergeFileConfigs'
 import {configPaths, NonConfigEnv} from './configPaths'
 import {readConfigFiles} from './loadFileConfigs'
 import {replaceWithEnvVar} from './replaceWithEnvVar'
+import {loadCLIConfigs} from './loadCliConfigs'
 
-
-export const mergeFileConfigsForPath: <T extends NonConfigEnv>(process: T, path: string) => any = R.converge(replaceWithEnvVar, [ R.compose(
-  mergeFileConfigs,
-  readConfigFiles,
-  configPaths
-), R.identity])
+export const mergeFileConfigsForPath: <T extends NonConfigEnv>(
+  process: T,
+  path: string
+) => any = R.converge(R.mergeDeepRight, [
+  R.converge(replaceWithEnvVar, [
+    R.compose(
+      mergeFileConfigs,
+      readConfigFiles,
+      configPaths
+    ),
+    R.identity
+  ]),
+  loadCLIConfigs
+])

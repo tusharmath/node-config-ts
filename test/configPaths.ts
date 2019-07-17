@@ -23,7 +23,8 @@ describe('config-paths', () => {
         cwd: () => '/app/www.bravo.com/server'
       }
       const actual = configPaths(process, subPath).defaultConfig
-      const expected = '/app/www.bravo.com/server/test/stub-module/config/default.json'
+      const expected =
+        '/app/www.bravo.com/server/test/stub-module/config/default.json'
       assert.deepEqual(actual, expected)
     })
   })
@@ -45,7 +46,8 @@ describe('config-paths', () => {
         cwd: () => '/app/www.bravo.com/server'
       }
       const actual = configPaths(process, subPath).envConfig
-      const expected = '/app/www.bravo.com/server/test/stub-module/config/env/production.json'
+      const expected =
+        '/app/www.bravo.com/server/test/stub-module/config/env/production.json'
 
       assert.deepEqual(actual, expected)
     })
@@ -65,7 +67,8 @@ describe('config-paths', () => {
         cwd: () => '/app/www.bravo.com/server'
       }
       const actual = configPaths(process, subPath).envConfig
-      const expected = '/app/www.bravo.com/server/test/stub-module/config/env/default.json'
+      const expected =
+        '/app/www.bravo.com/server/test/stub-module/config/env/default.json'
 
       assert.deepEqual(actual, expected)
     })
@@ -138,7 +141,8 @@ describe('config-paths', () => {
         cwd: () => '/app/www.bravo.com/server'
       }
       const actual = configPaths(process, subPath).userConfig
-      const expected = '/app/www.bravo.com/server/test/stub-module/config/user/root.json'
+      const expected =
+        '/app/www.bravo.com/server/test/stub-module/config/user/root.json'
 
       assert.deepEqual(actual, expected)
     })

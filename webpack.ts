@@ -20,4 +20,4 @@ export const NodeConfigTSPlugin: {
 } = R.compose(
   setConfigResolver,
   setGlobalConfigPlugin
-)
+) as {(config: Configuration): Configuration}

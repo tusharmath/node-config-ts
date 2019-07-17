@@ -44,7 +44,7 @@ export const configPaths = <T extends NonConfigEnv>(
     process.cwd(),
     subDir,
     `${baseDIR}/deployment/${process.env['DEPLOYMENT'] ||
-    DEFAULT_FILENAME}.json`
+      DEFAULT_FILENAME}.json`
   )
   const userConfig = path.resolve(
     process.cwd(),

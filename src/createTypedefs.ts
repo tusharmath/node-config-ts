@@ -15,5 +15,4 @@ const ts = defaultFileContent
   .concat(JsonToTS(config, {rootName: 'Config'}))
   .join('\n')
 
-
 fs.writeFileSync(path.resolve(process.cwd(), baseConfigPath(process), file), ts)

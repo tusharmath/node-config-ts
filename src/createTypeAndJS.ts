@@ -4,38 +4,43 @@
 
 import * as fs from 'fs'
 import * as path from 'path'
-import * as glob from 'glob';
-import {mergeFileConfigsForPath} from './mergeFileConfigsForPath'
-import {baseConfigPath} from './baseConfigPath'
+import {checkIfDefaultJson} from './checkIfDefaultJson'
+import {createMergedConfig} from './createMergedConfig'
 
 const JsonToTS = require('json-to-ts')
 
 const typeFile = `index.d.ts`
 const jsFile = 'index.js'
-const defaultFileContent = ['/* tslint:disable */', '/* eslint-disable */']
-const defaultJsContent = 'export const config ='
+const defaultTypeFileContent = ['/* tslint:disable */', '/* eslint-disable */']
+const defaultJsFileContent =
+  "import {config as mainConfig} from 'node-config-ts' \n export const config ="
 
-const getJsFileBuffer = (config: Config) => defaultJsContent
-  .concat(JSON.stringify(config))
+const getJsFileBuffer = (p: string) =>
+  defaultJsFileContent.concat(` mainConfig['${p}']`)
 
-const getTsFileBuffer = (config: Config) => defaultFileContent
-  .concat(JsonToTS(config, {rootName: 'Config'}))
-  .concat('export declare const config: Config')
-  .join('\n')
+const getTsFileBuffer = (config: Config) =>
+  defaultTypeFileContent
+    .concat(JsonToTS(config, {rootName: 'Config'}))
+    .concat('export declare const config: Config')
+    .join('\n')
 
-const baseConfigPathName = baseConfigPath(process)
-
-const generateTypeDefs = () => {
-  const configPaths = glob.sync(`**/*/${baseConfigPathName}`, {ignore:  [
-      'node_modules/**',
-    ]})
-  configPaths.forEach((p) => {
-    const config = mergeFileConfigsForPath(process, p)
-    if(fs.existsSync(path.resolve(process.cwd(), p))){
-      fs.writeFileSync(path.resolve(process.cwd(), p, typeFile), getTsFileBuffer(config))
-      fs.writeFileSync(path.resolve(process.cwd(), p, jsFile), getJsFileBuffer(config))
+/**
+ * Write typedef and js for each path in nested config
+ */
+export const writeConfigFilesToSystem = () => {
+  const config = createMergedConfig(process)
+  Object.keys(config).forEach(p => {
+    if (checkIfDefaultJson(process, p)) {
+      fs.writeFileSync(
+        path.resolve(process.cwd(), p, typeFile),
+        getTsFileBuffer(config[p])
+      )
+      fs.writeFileSync(
+        path.resolve(process.cwd(), p, jsFile),
+        getJsFileBuffer(p)
+      )
     }
   })
 }
 
-generateTypeDefs()
+writeConfigFilesToSystem()

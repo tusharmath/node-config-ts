@@ -15,7 +15,7 @@ export type Configurations<T> = {[key in keyof T]: any}
  * @param c {Process}
  * @return {defaultConfig, envConfig, deploymentConfig, userConfig}
  */
-export const readConfigFiles: (obj: any) => any =R.mapObjIndexed(
+export const readConfigFiles: (obj: any) => any = R.mapObjIndexed(
   R.ifElse(fs.existsSync, require, R.always({}))
 )
 
