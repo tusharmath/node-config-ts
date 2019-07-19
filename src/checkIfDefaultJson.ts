@@ -8,4 +8,4 @@ import {NonConfigEnv} from './configPaths'
 export const checkIfDefaultJson = <T extends NonConfigEnv>(
   process: T,
   p: string
-) => fs.existsSync(path.resolve(process.cwd(), p))
+) => fs.existsSync(path.resolve(process.cwd(), `${p}/default.json`))
