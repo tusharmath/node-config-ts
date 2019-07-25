@@ -1,4 +1,4 @@
-import {createMergedConfig} from '../src/createMergedConfig'
+import {mergeAllConfigs} from '../src/mergeAllConfigs'
 import * as assert from 'assert'
 import * as path from 'path'
 
@@ -12,7 +12,7 @@ describe('createMergedConfig', () => {
         MAX_RETRIES: 999
       }
     }
-    const actual = createMergedConfig(process)
+    const actual = mergeAllConfigs(process)
     const expected = {
       config: {
         type: 'default',
@@ -38,7 +38,7 @@ describe('createMergedConfig', () => {
         MAX_RETRIES: 999
       }
     }
-    const actual = createMergedConfig(process)
+    const actual = mergeAllConfigs(process)
     const expected = {
       config: {
         type: 'user',
@@ -62,7 +62,7 @@ describe('createMergedConfig', () => {
         MAX_RETRIES: 999
       }
     }
-    const actual = createMergedConfig(process)
+    const actual = mergeAllConfigs(process)
     const expected = {
       config: {
         type: 'cli-type',

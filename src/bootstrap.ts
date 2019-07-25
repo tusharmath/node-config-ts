@@ -5,7 +5,7 @@
 import * as fs from 'fs'
 import * as path from 'path'
 import {checkIfDefaultJson} from './checkIfDefaultJson'
-import {createMergedConfig} from './createMergedConfig'
+import {mergeAllConfigs} from './mergeAllConfigs'
 
 const JsonToTS = require('json-to-ts')
 
@@ -28,7 +28,7 @@ const getTsFileBuffer = (config: Config) =>
  * Write typedef and js for each path in nested config
  */
 export const writeConfigFilesToSystem = () => {
-  const config = createMergedConfig(process)
+  const config = mergeAllConfigs(process)
   Object.keys(config).forEach(p => {
     if (checkIfDefaultJson(process, p)) {
       fs.writeFileSync(

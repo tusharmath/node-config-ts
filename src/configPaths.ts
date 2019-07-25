@@ -24,12 +24,17 @@ export type NonConfigEnv = {
   }
 }
 
+/**
+ * Returns the paths for all the config files — {default, env, deployment, user} etc.
+ * @param process - Used to know which file to load. For eg. if env=production, the env config will be env/production.json.
+ * @param baseDir - // TODO
+ */
 export const configPaths = <T extends NonConfigEnv>(
   process: T,
-  subPath?: string
+  baseDir?: string
 ): ConfigTypes => {
   const baseDIR = baseConfigPath(process)
-  const subDir = path.parse(subPath || '').dir
+  const subDir = path.parse(baseDir || '').dir
   const defaultConfig = path.resolve(
     process.cwd(),
     subDir,
