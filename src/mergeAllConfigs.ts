@@ -6,6 +6,8 @@ import {getAllConfigPath} from './getAllConfigPaths'
 export type NestedConfig = {[k: string]: Config}
 /**
  * Create merged object of nested configs
+ * @param process {Process}
+ * @returns {NestedConfig}
  */
 export const mergeAllConfigs: <T extends NonConfigEnv>(
   process: T
