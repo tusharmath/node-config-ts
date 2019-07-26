@@ -4,7 +4,7 @@
 import R = require('ramda')
 import {mergeFileConfigs} from './mergeFileConfigs'
 import {configPaths, NonConfigEnv} from './configPaths'
-import {readConfigFiles} from './loadFileConfigs'
+import {loadFileConfigs} from './loadFileConfigs'
 import {replaceWithEnvVar} from './replaceWithEnvVar'
 import {loadCLIConfigs} from './loadCliConfigs'
 
@@ -15,7 +15,7 @@ export const mergeFileConfigsForPath: <T extends NonConfigEnv>(
   R.converge(replaceWithEnvVar, [
     R.compose(
       mergeFileConfigs,
-      readConfigFiles,
+      loadFileConfigs,
       configPaths
     ),
     R.identity
