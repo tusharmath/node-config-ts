@@ -20,6 +20,7 @@ export type NonConfigEnv = {
     DEPLOYMENT?: string
     USER?: string
     NODE_CONFIG_TS_DIR?: string
+    BOOTSTRAP?: string
   }
 }
 

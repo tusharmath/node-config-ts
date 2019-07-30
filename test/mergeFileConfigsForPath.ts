@@ -25,7 +25,7 @@ describe('mergeConfigsForPath', () => {
   })
   it('should add configs from cli', () => {
     const process = {
-      argv: ['--port', '3000', '--type', 'cli-type'],
+      argv: ['--port', '3000', '--type', 'cli-type', '--propA', 'xyz'],
       cwd: () => path.resolve(__dirname, 'stub-module'),
       env: {
         DEPLOYMENT: 'www.example.com',
@@ -39,7 +39,28 @@ describe('mergeConfigsForPath', () => {
       type: 'cli-type',
       maxRetries: 999,
       module1Props: 'mod1-example',
-      port: '3000'
+      port: '3000',
+      propA: 'xyz'
+    }
+    assert.deepEqual(actual, expected)
+  })
+  it('should add configs from cli if BOOTSTRAP is true', () => {
+    const process = {
+      argv: ['--port', '3000', '--type', 'cli-type', '--propA', 'xyz'],
+      cwd: () => path.resolve(__dirname, 'stub-module'),
+      env: {
+        DEPLOYMENT: 'www.example.com',
+        NODE_ENV: 'production',
+        USER: 'root',
+        MAX_RETRIES: 999,
+        BOOTSTRAP: 'true'
+      }
+    }
+    const actual = mergeFileConfigsForPath(process, subPath)
+    const expected = {
+      type: 'user',
+      maxRetries: 999,
+      module1Props: 'mod1-example'
     }
     assert.deepEqual(actual, expected)
   })

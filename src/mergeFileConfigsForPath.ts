@@ -7,6 +7,7 @@ import {configPaths, NonConfigEnv} from './configPaths'
 import {loadFileConfigs} from './loadFileConfigs'
 import {replaceWithEnvVar} from './replaceWithEnvVar'
 import {loadCLIConfigs} from './loadCliConfigs'
+import {checkIfBootstrap} from './checkIfBootstrap'
 
 export const mergeFileConfigsForPath: <T extends NonConfigEnv>(
   process: T,
@@ -20,5 +21,5 @@ export const mergeFileConfigsForPath: <T extends NonConfigEnv>(
     ),
     R.identity
   ]),
-  loadCLIConfigs
+  R.ifElse(checkIfBootstrap, R.always({}), loadCLIConfigs)
 ])

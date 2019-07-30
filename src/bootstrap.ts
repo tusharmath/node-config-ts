@@ -5,5 +5,7 @@
 import {generateJsFiles} from './generateJsFiles'
 import {generateTypeDefFiles} from './generateTypeDefFiles'
 
+process.env['BOOTSTRAP'] = 'true'
+
 generateTypeDefFiles()
 generateJsFiles()
