@@ -2,7 +2,7 @@ import {config} from './index'
 import {DefinePlugin, Configuration} from 'webpack'
 import * as R from 'ramda'
 
-const setConfigResolver = R.assocPath(
+const setConfigResolver: (obj: Configuration) => Configuration = R.assocPath(
   ['resolve', 'alias', 'node-config-ts'],
   'node-config-ts/iso'
 )

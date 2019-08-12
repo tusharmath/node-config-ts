@@ -1,6 +1,6 @@
 /**
  * Created by tushar on 30/12/17.
  */
+import {mergeAllConfigs, NestedConfig} from './src/mergeAllConfigs'
 
-import {mergeAllConfigs} from './src/mergeAllConfigs'
-export const config: Config = mergeAllConfigs(process)
+export const config: NestedConfig = mergeAllConfigs(process)

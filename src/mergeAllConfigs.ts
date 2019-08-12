@@ -1,22 +1,24 @@
-/**
- * Created by tushar on 30/12/17.
- */
-import R = require('ramda')
-import {loadCLIConfigs} from './loadCliConfigs'
-import {loadFileConfigs} from './loadFileConfigs'
-import {replaceWithEnvVar} from './replaceWithEnvVar'
-import {mergeFileConfigs} from './mergeFileConfigs'
+import {mergeFileConfigsForPath} from './mergeFileConfigsForPath'
+import {checkIfDefaultJson} from './checkIfDefaultJson'
+import {NonConfigEnv} from './configPaths'
+import {getAllConfigPath} from './getAllConfigPaths'
+import {ProcessArgv} from './loadCliConfigs'
 
+export type NestedConfig = {[k: string]: Config}
 /**
- * Loads all the configs from files and cli and merges them.
+ * Create merged object of nested configs
+ * @param process {Process}
+ * @returns {NestedConfig}
  */
-export const mergeAllConfigs = R.converge(R.mergeDeepRight, [
-  R.converge(replaceWithEnvVar, [
-    R.compose(
-      mergeFileConfigs,
-      loadFileConfigs
-    ),
-    R.identity
-  ]),
-  loadCLIConfigs
-])
+export const mergeAllConfigs: <T extends NonConfigEnv & ProcessArgv>(
+  process: T
+) => NestedConfig = process => {
+  const configPaths = getAllConfigPath(process)
+  const mergedConfig: NestedConfig = {}
+  configPaths.forEach(p => {
+    if (checkIfDefaultJson(process, p)) {
+      mergedConfig[p] = mergeFileConfigsForPath(process, p)
+    }
+  })
+  return mergedConfig
+}

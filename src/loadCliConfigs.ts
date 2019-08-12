@@ -5,7 +5,7 @@
 import minimist = require('minimist')
 import * as R from 'ramda'
 
-type ProcessArgv = {
+export type ProcessArgv = {
   argv: string[]
 }
 

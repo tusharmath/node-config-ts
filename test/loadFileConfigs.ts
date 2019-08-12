@@ -11,41 +11,42 @@ import * as envConfig from './stub-module/config/env/production.json'
 import * as userConfig from './stub-module/config/user/root.json'
 
 describe('load-file-configs', () => {
-  it('should load the configs that are available', () => {
-    const process = {
-      cwd: () => path.resolve(__dirname, 'stub-module'),
-      env: {
-        DEPLOYMENT: 'www.example.com',
-        NODE_ENV: 'production',
-        USER: 'root'
+  const basePath = path.resolve(__dirname, 'stub-module')
+  describe('loadFileConfigs', () => {
+    it('should load the configs that are available', () => {
+      const configPaths = {
+        defaultConfig: path.resolve(basePath, 'config/default.json'),
+        envConfig: path.resolve(basePath, 'config/env/production.json'),
+        deploymentConfig: path.resolve(
+          basePath,
+          'config/deployment/www.example.com.json'
+        ),
+        userConfig: path.resolve(basePath, 'config/user/root.json')
       }
-    }
-    const actual = loadFileConfigs(process)
-    const expected = {
-      defaultConfig,
-      deploymentConfig,
-      envConfig,
-      userConfig
-    }
-    assert.deepEqual(actual, expected)
-  })
-
-  it('should load default configs when not available', () => {
-    const process = {
-      cwd: () => path.resolve(__dirname, 'stub-module'),
-      env: {
-        DEPLOYMENT: 'www.example.com',
-        NODE_ENV: 'development',
-        USER: 'root'
+      const actual = loadFileConfigs(configPaths)
+      const expected = {
+        defaultConfig,
+        deploymentConfig,
+        envConfig,
+        userConfig
       }
-    }
-    const actual = loadFileConfigs(process)
-    const expected = {
-      defaultConfig,
-      deploymentConfig,
-      envConfig: {},
-      userConfig
-    }
-    assert.deepEqual(actual, expected)
+      assert.deepEqual(actual, expected)
+    })
+    it('should load default configs when not available', () => {
+      const configPaths = {
+        defaultConfig: path.resolve(basePath, 'dummy'),
+        envConfig: path.resolve(basePath, 'dummy'),
+        deploymentConfig: path.resolve(basePath, 'dummy'),
+        userConfig: path.resolve(basePath, 'dummy')
+      }
+      const actual = loadFileConfigs(configPaths)
+      const expected = {
+        defaultConfig: {},
+        envConfig: {},
+        deploymentConfig: {},
+        userConfig: {}
+      }
+      assert.deepEqual(actual, expected)
+    })
   })
 })

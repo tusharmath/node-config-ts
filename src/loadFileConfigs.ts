@@ -12,14 +12,12 @@ export type Configurations<T> = {[key in keyof T]: any}
 /**
  * Loads the configs provided in the {ConfigPaths}
  * If no config is found then an empty config is returned.
- * @param process {Process}
+ * @param obj {ConfigTypes}
  * @return {defaultConfig, envConfig, deploymentConfig, userConfig}
  */
-export const loadFileConfigs = <T extends NonConfigEnv>(
-  process: T
-): Configurations<ConfigTypes> => {
-  const itar: any = R.mapObjIndexed(
-    R.ifElse(fs.existsSync, require, R.always({}))
-  )
-  return itar(configPaths(process))
-}
+export const loadFileConfigs: (
+  obj: ConfigTypes
+) => Configurations<ConfigTypes> = obj =>
+  R.mapObjIndexed(R.ifElse(fs.existsSync, require, R.always({})))(
+    obj
+  ) as Configurations<ConfigTypes>

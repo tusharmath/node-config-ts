@@ -1,9 +1,33 @@
+import {mergeAllConfigs} from '../src/mergeAllConfigs'
 import * as assert from 'assert'
 import * as path from 'path'
-import {mergeAllConfigs} from '../src/mergeAllConfigs'
 
-describe('mergeAllConfigs()', () => {
-  it('should load configs from all the places', () => {
+describe('createMergedConfig', () => {
+  it('should return nested config', () => {
+    const process = {
+      argv: [],
+      cwd: () => path.resolve(__dirname, 'stub-module'),
+      env: {
+        NODE_ENV: undefined,
+        MAX_RETRIES: 999
+      }
+    }
+    const actual = mergeAllConfigs(process)
+    const expected = {
+      config: {
+        type: 'default',
+        port: 9000,
+        maxRetries: 999
+      },
+      'module-1/config': {
+        type: 'default-module-1',
+        maxRetries: 999,
+        module1Props: 'mod1'
+      }
+    }
+    assert.deepEqual(actual, expected)
+  })
+  it('should return nested config for given deployment, env and user', () => {
     const process = {
       argv: [],
       cwd: () => path.resolve(__dirname, 'stub-module'),
@@ -16,48 +40,41 @@ describe('mergeAllConfigs()', () => {
     }
     const actual = mergeAllConfigs(process)
     const expected = {
-      type: 'user',
-      port: 9000,
-      maxRetries: 999
+      config: {
+        type: 'user',
+        port: 9000,
+        maxRetries: 999
+      },
+      'module-1/config': {
+        type: 'user',
+        maxRetries: 999,
+        module1Props: 'mod1-example'
+      }
     }
     assert.deepEqual(actual, expected)
   })
-  it('should override with cli configs', () => {
+  it('should return nested config with cli option', () => {
     const process = {
-      argv: ['--port', '3000', '--wonder', 'woman'],
+      argv: ['--port', '3000', '--type', 'cli-type'],
       cwd: () => path.resolve(__dirname, 'stub-module'),
       env: {
-        DEPLOYMENT: 'www.example.com',
-        NODE_ENV: 'production',
-        USER: 'root',
+        NODE_ENV: undefined,
         MAX_RETRIES: 999
       }
     }
     const actual = mergeAllConfigs(process)
     const expected = {
-      type: 'user',
-      port: 3000,
-      wonder: 'woman',
-      maxRetries: 999
-    }
-    assert.deepEqual(actual, expected)
-  })
-  it('should override ENV variables with cli configs', () => {
-    const process = {
-      argv: ['--port', '3000', '--maxRetries', '150'],
-      cwd: () => path.resolve(__dirname, 'stub-module'),
-      env: {
-        DEPLOYMENT: 'www.example.com',
-        NODE_ENV: 'production',
-        USER: 'root',
-        MAX_RETRIES: 999
+      config: {
+        type: 'cli-type',
+        port: 3000,
+        maxRetries: 999
+      },
+      'module-1/config': {
+        type: 'cli-type',
+        maxRetries: 999,
+        module1Props: 'mod1',
+        port: 3000
       }
-    }
-    const actual = mergeAllConfigs(process)
-    const expected = {
-      type: 'user',
-      port: 3000,
-      maxRetries: 150
     }
     assert.deepEqual(actual, expected)
   })

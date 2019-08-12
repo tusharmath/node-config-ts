@@ -25,7 +25,7 @@ A simple configuration manager for typescript based projects.
    npm i node-config-ts
    ```
 
-2. Add a `postinstall` step in ``package.json``
+2. Add a `postinstall` step in `package.json`
 
    ```json
    {
