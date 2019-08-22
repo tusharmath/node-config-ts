@@ -2,11 +2,12 @@
   "name": "node-config-ts",
   "version": "0.0.0-development",
   "dependencies": {
-    "@types/webpack": "^4.4.31",
-    "json-to-ts": "^1.5.4",
+    "json-to-ts": "^1.6.0",
     "minimist": "^1.2.0",
-    "ramda": "^0.26.1",
-    "webpack": "^4.31.0"
+    "ramda": "^0.26.1"
+  },
+  "peerDependencies": {
+    "webpack": "4.x"
   },
   "scripts": {
     "prepublishOnly": "node_modules/.bin/tsc -d",
@@ -19,16 +20,17 @@
   "bin": "./bin/cli",
   "devDependencies": {
     "@types/minimist": "^1.2.0",
-    "@types/mocha": "^5.2.6",
-    "@types/node": "^12.0.2",
-    "@types/ramda": "^0.26.8",
-    "cz-conventional-changelog": "^2.1.0",
-    "mocha": "^6.1.4",
-    "semantic-release": "^15.13.12",
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^12.7.2",
+    "@types/ramda": "^0.26.19",
+    "@types/webpack": "^4.39.0",
+    "cz-conventional-changelog": "^3.0.2",
+    "mocha": "^6.2.0",
+    "semantic-release": "^15.13.21",
     "travis-deploy-once": "^5.0.9",
-    "ts-node": "^8.1.0",
+    "ts-node": "^8.3.0",
     "tslint-config-prettier": "^1.18.0",
-    "typescript": "^3.4.5"
+    "typescript": "^3.5.3"
   },
   "config": {
     "commitizen": {
