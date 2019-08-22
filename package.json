@@ -5,8 +5,7 @@
     "@types/webpack": "^4.4.31",
     "json-to-ts": "^1.5.4",
     "minimist": "^1.2.0",
-    "ramda": "^0.26.1",
-    "webpack": "^4.31.0"
+    "ramda": "^0.26.1"
   },
   "scripts": {
     "prepublishOnly": "node_modules/.bin/tsc -d",
@@ -29,6 +28,9 @@
     "ts-node": "^8.1.0",
     "tslint-config-prettier": "^1.18.0",
     "typescript": "^3.4.5"
+  },
+  "peerDependencies": {
+    "webpack": "^4"
   },
   "config": {
     "commitizen": {

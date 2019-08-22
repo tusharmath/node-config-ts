@@ -5,7 +5,7 @@
 import * as R from 'ramda'
 
 const getVarName = R.replace('@@', '')
-const hasEnvVar = R.test(/^@@.*$/)
+export const hasEnvVar = R.test(/^@@.*$/)
 
 type NodeENV = {
   env: {
