@@ -15,9 +15,9 @@ const setGlobalConfigPlugin = R.over(
   )
 )
 
-export const NodeConfigTSPlugin: {
-  (config: Configuration): Configuration
-} = R.compose(
+export const NodeConfigTSPlugin: (
+  config: Configuration
+) => Configuration = R.compose(
   setConfigResolver,
   setGlobalConfigPlugin
 )
