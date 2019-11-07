@@ -89,6 +89,29 @@ describe('config-paths', () => {
     })
   })
 
+  describe('USERNAME', () => {
+    it('should return actual config path', () => {
+      const process = {
+        env: {USERNAME: 'root'},
+        cwd: () => '/app/www.bravo.com/server'
+      }
+      const actual = configPaths(process).userConfig
+      const expected = '/app/www.bravo.com/server/config/user/root.json'
+
+      assert.deepEqual(actual, expected)
+    })
+    it('should return default config path', () => {
+      const process = {
+        env: {},
+        cwd: () => '/app/www.bravo.com/server'
+      }
+      const actual = configPaths(process).userConfig
+      const expected = '/app/www.bravo.com/server/config/user/default.json'
+
+      assert.deepEqual(actual, expected)
+    })
+  })
+
   describe('ENV:NODE_CONFIG_DIR', () => {
     it('should set base config dir', () => {
       const process = {
