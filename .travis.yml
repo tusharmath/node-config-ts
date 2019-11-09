@@ -8,6 +8,9 @@ node_js:
   - 'stable'
 after_success:
   - npm run travis-deploy-once "npm run semantic-release"
+script:
+  - yarn tsc -d
+  - yarn test
 branches:
   except:
     - /^v\d+\.\d+\.\d+$/

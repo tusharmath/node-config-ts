@@ -10,7 +10,6 @@
     "webpack": "4.x"
   },
   "scripts": {
-    "prepublishOnly": "node_modules/.bin/tsc -d",
     "semantic-release": "semantic-release",
     "travis-deploy-once": "travis-deploy-once",
     "lint": "tslint --project .",
