@@ -21,16 +21,16 @@
   "devDependencies": {
     "@types/minimist": "^1.2.0",
     "@types/mocha": "^5.2.7",
-    "@types/node": "^12.7.2",
-    "@types/ramda": "^0.26.19",
-    "@types/webpack": "^4.39.0",
+    "@types/node": "^12.12.7",
+    "@types/ramda": "^0.26.33",
+    "@types/webpack": "^4.39.8",
     "cz-conventional-changelog": "^3.0.2",
-    "mocha": "^6.2.0",
-    "semantic-release": "^15.13.21",
+    "mocha": "^6.2.2",
+    "semantic-release": "^15.13.30",
     "travis-deploy-once": "^5.0.9",
-    "ts-node": "^8.3.0",
+    "ts-node": "^8.4.1",
     "tslint-config-prettier": "^1.18.0",
-    "typescript": "^3.5.3"
+    "typescript": "^3.7.2"
   },
   "config": {
     "commitizen": {
