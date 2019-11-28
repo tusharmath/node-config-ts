@@ -2,7 +2,6 @@
 
 !*.js
 *.ts
-!*.d.ts
 .idea/
 test/
 *.map
