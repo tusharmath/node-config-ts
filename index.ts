@@ -3,4 +3,4 @@
  */
 
 import {mergeAllConfigs} from './src/mergeAllConfigs'
-export const config: Config = mergeAllConfigs(process)
+export const config = mergeAllConfigs(process)

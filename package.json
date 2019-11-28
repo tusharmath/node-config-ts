@@ -4,6 +4,7 @@
   "dependencies": {
     "json-to-ts": "^1.6.0",
     "minimist": "^1.2.0",
+    "prettier": "^1.19.1",
     "ramda": "^0.26.1"
   },
   "peerDependencies": {
@@ -21,6 +22,7 @@
     "@types/minimist": "^1.2.0",
     "@types/mocha": "^5.2.7",
     "@types/node": "^12.12.7",
+    "@types/prettier": "^1.19.0",
     "@types/ramda": "^0.26.33",
     "@types/webpack": "^4.39.8",
     "cz-conventional-changelog": "^3.0.2",
