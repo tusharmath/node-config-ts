@@ -146,6 +146,20 @@ node server.js // server started with config.port as 3000
 
 By default the base directory for loading configs is `config`. This can be configured using the ENV variable `NODE_CONFIG_TS_DIR`.
 
+### Using `Config` type
+
+Sometimes it's necessary to access the config type info. This can be done via importing `Config`.
+
+```ts
+import {config, Config} from 'node-config-ts'
+
+const main = (c: Config) => {
+  /// ...
+}
+
+main(config)
+```
+
 ### Using commandline params
 
 The command line arguments can override all the configuration params. This is useful when you want to start a node server by passing the port externally —
