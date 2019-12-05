@@ -3,6 +3,7 @@ node_modules/
 *.js
 *.map
 *.d.ts
+index.d.ts
 !global.d.ts
 *.tgz
-.vscode/
+.vscode

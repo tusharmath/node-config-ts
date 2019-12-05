@@ -2,7 +2,14 @@
 
 !*.js
 *.ts
+!*.d.ts
+index.d.ts
 .idea/
 test/
 *.map
 *.tgz
+.prettierrc
+.vscode/
+*.yml
+tslint.json
+tsconfig.json
