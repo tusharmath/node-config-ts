@@ -9,7 +9,7 @@ node_js:
 after_success:
   - npm run travis-deploy-once "npm run semantic-release"
 script:
-  - yarn tsc -b
+  - yarn tsc -d
   - yarn test
 branches:
   except:
