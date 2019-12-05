@@ -8,7 +8,8 @@
     "ramda": "^0.26.1"
   },
   "peerDependencies": {
-    "webpack": "4.x"
+    "webpack": "4.x",
+    "@types/webpack": "4.x"
   },
   "scripts": {
     "semantic-release": "semantic-release",
