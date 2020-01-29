@@ -21,7 +21,7 @@
   "bin": "./bin/cli",
   "devDependencies": {
     "@types/minimist": "^1.2.0",
-    "@types/mocha": "^5.2.7",
+    "@types/mocha": "^7.0.0",
     "@types/node": "^12.12.14",
     "@types/prettier": "^1.19.0",
     "@types/ramda": "^0.26.36",
