@@ -19,6 +19,8 @@ A simple configuration manager for typescript based projects.
 
 ## Usage
 
+**IMPORTANT: Make sure you have a local `tsconfig.json` file in your project.**
+
 1. Install package
 
    ```bash
