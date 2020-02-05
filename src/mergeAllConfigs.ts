@@ -12,10 +12,7 @@ import {mergeFileConfigs} from './mergeFileConfigs'
  */
 export const mergeAllConfigs = R.converge(R.mergeDeepRight, [
   R.converge(replaceWithEnvVar, [
-    R.compose(
-      mergeFileConfigs,
-      loadFileConfigs
-    ),
+    R.compose(mergeFileConfigs, loadFileConfigs),
     R.identity
   ]),
   loadCLIConfigs
