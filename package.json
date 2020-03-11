@@ -2,7 +2,7 @@
   "name": "node-config-ts",
   "version": "0.0.0-development",
   "dependencies": {
-    "json-to-ts": "^1.6.0",
+    "json-to-ts": "^1.7.0",
     "minimist": "^1.2.0",
     "prettier": "^1.19.1",
     "ramda": "^0.27.0"
