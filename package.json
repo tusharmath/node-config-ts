@@ -22,7 +22,7 @@
   "devDependencies": {
     "@types/minimist": "^1.2.0",
     "@types/mocha": "^7.0.1",
-    "@types/node": "^13.7.0",
+    "@types/node": "^13.13.2",
     "@types/prettier": "^1.19.0",
     "@types/ramda": "^0.26.40",
     "@types/webpack": "^4.41.5",
