@@ -28,7 +28,7 @@
     "@types/webpack": "^4.41.5",
     "cz-conventional-changelog": "^3.1.0",
     "mocha": "^7.0.1",
-    "semantic-release": "^17.0.2",
+    "semantic-release": "^17.0.8",
     "travis-deploy-once": "^5.0.9",
     "tslint-config-prettier": "^1.18.0",
     "typescript": "^3.7.5"
