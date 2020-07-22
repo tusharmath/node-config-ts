@@ -128,20 +128,31 @@ or `USERNAME` env variable (Windows way).
 
 ### Using environment variables
 
-Whenever the value is prefixed with the letters `@@` **node-config-ts** automatically looks for an environment variable with that name. For example —
+Whenever the value is prefixed and/or suffixed with the letters `@@` **node-config-ts** automatically looks for an environment variable with that name. For example —
 
 ```json
 // default.json
 {
-  "port": "@@APP_PORT"
+  "port": "@@APP_PORT",
+  "url": "https://@@DOMAIN@@/home"
 }
 ```
 
-In the above case automatically the value of `port` is set to the value that's available inside the environment variable `PORT`.
+In the above case automatically the value of `port`, `url` is set to the value that's available inside the environment variable `PORT`, `DOMAIN`.
 
 ```bash
 export APP_PORT=3000
+export DOMAIN=test.com
 node server.js // server started with config.port as 3000
+```
+
+The final config resolves into
+
+```json
+{
+  "port": "3000",
+  "url": "https://test.com/home"
+}
 ```
 
 ### Custom Config Directory
