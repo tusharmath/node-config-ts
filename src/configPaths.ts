@@ -18,6 +18,7 @@ export type NonConfigEnv = {
   cwd(): string
   env: {
     NODE_ENV?: string
+    NODE_CONFIG_TS_ENV?: string
     DEPLOYMENT?: string
     USER?: string
     USERNAME?: string
@@ -33,9 +34,12 @@ export const configPaths = <T extends NonConfigEnv>(
     process.cwd(),
     `${baseDIR}/${DEFAULT_FILENAME}.json`
   )
+  const envConfigFile = `${process.env['NODE_CONFIG_TS_ENV'] ||
+    process.env['NODE_ENV'] ||
+    DEFAULT_FILENAME}`
   const envConfig = path.resolve(
     process.cwd(),
-    `${baseDIR}/env/${process.env['NODE_ENV'] || DEFAULT_FILENAME}.json`
+    `${baseDIR}/env/${envConfigFile}.json`
   )
   const deploymentConfig = path.resolve(
     process.cwd(),

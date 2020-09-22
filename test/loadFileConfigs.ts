@@ -48,4 +48,44 @@ describe('load-file-configs', () => {
     }
     assert.deepEqual(actual, expected)
   })
+
+  describe('alternative env varialble', () => {
+    it('should load the configs that are available', () => {
+      const process = {
+        cwd: () => path.resolve(__dirname, 'stub-module'),
+        env: {
+          DEPLOYMENT: 'www.example.com',
+          NODE_CONFIG_TS_ENV: 'production',
+          USER: 'root'
+        }
+      }
+      const actual = loadFileConfigs(process)
+      const expected = {
+        defaultConfig,
+        deploymentConfig,
+        envConfig,
+        userConfig
+      }
+      assert.deepEqual(actual, expected)
+    })
+
+    it('should load default configs when not available', () => {
+      const process = {
+        cwd: () => path.resolve(__dirname, 'stub-module'),
+        env: {
+          DEPLOYMENT: 'www.example.com',
+          NODE_CONFIG_TS_ENV: 'development',
+          USER: 'root'
+        }
+      }
+      const actual = loadFileConfigs(process)
+      const expected = {
+        defaultConfig,
+        deploymentConfig,
+        envConfig: {},
+        userConfig
+      }
+      assert.deepEqual(actual, expected)
+    })
+  })
 })

@@ -119,12 +119,14 @@ There are three directories in which a project can have configurations — `depl
 
 | **process.env** | **directory**      |
 | --------------- | ------------------ |
-| NODE_ENV        | /config/env        |
+| NODE_ENV | NODE_CONFIG_TS_ENV | /config/env        |
 | DEPLOYMENT      | /config/deployment |
 | USER (USERNAME) | /config/user       |
 
 User specific configuration is loaded based on `USER` env variable (UNIX way)
 or `USERNAME` env variable (Windows way).
+
+You can use NODE_CONFIG_TS_ENV as an alternative to NODE_ENV.
 
 ### Using environment variables
 
