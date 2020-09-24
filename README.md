@@ -119,7 +119,7 @@ There are three directories in which a project can have configurations — `depl
 
 | **process.env** | **directory**      |
 | --------------- | ------------------ |
-| NODE_ENV | NODE_CONFIG_TS_ENV | /config/env        |
+| NODE_ENV or NODE_CONFIG_TS_ENV | /config/env        |
 | DEPLOYMENT      | /config/deployment |
 | USER (USERNAME) | /config/user       |
 
