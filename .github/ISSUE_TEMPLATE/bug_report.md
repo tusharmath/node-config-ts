@@ -11,6 +11,7 @@ assignees: ''
 A clear and concise description of what the bug is.
 
 **Steps To Reproduce:**
+A clear set of instructions to follow to reproduce the issue.
 
 
 **Expected behavior:**
