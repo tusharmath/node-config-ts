@@ -37,4 +37,23 @@ describe('replaceWithEnvVar', () => {
     const expected = {a: {b: {c: '5050'}}}
     assert.deepEqual(actual, expected)
   })
+
+  it('should update all embedded variables in base config with available env variables', () => {
+    const process = {
+      env: {
+        DOMAIN: 'test.com',
+        PATH: 'home'
+      }
+    }
+    const baseConfig = {
+      a: {
+        b: {
+          c: 'https://@@DOMAIN@@/@@PATH'
+        }
+      }
+    }
+    const actual = replaceWithEnvVar(baseConfig, process)
+    const expected = {a: {b: {c: 'https://test.com/home'}}}
+    assert.deepEqual(actual, expected)
+  })
 })
