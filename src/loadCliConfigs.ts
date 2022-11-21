@@ -1,13 +1,9 @@
-/**
- * Created by tushar on 30/12/17.
- */
-
-import minimist = require('minimist')
-import * as R from 'ramda'
+import minimist from 'minimist';
+import * as R from 'ramda';
 
 type ProcessArgv = {
-  argv: string[]
-}
+  argv: string[];
+};
 
 /**
  * Loads config from the command line
@@ -15,5 +11,5 @@ type ProcessArgv = {
  * @return {{cliConfig: any}}
  */
 export const loadCLIConfigs = <T extends ProcessArgv>(process: T) => {
-  return R.omit(['_'], minimist(process.argv))
-}
+  return R.omit(['_'], minimist(process.argv));
+};

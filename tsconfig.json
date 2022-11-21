@@ -3,8 +3,13 @@
     "target": "es6",
     "module": "commonjs",
     "strict": true,
-    "plugins": [
-      {"name": "typescript-tslint-plugin", "configFile": "./tslint.json"}
-    ]
-  }
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "plugins": [{ "name": "typescript-tslint-plugin", "configFile": "./tslint.json" }],
+    "outDir": "./dist",
+    "types": ["node", "mocha"],
+    "typeRoots": ["./types", "./node_modules/@types"]
+  },
+  "include": ["index.ts", "src/**/*", "src/**/*.json"],
+  "exclude": ["node_modules", "**/*.spec.ts", "types"]
 }

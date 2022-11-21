@@ -7,3 +7,4 @@ index.d.ts
 !global.d.ts
 *.tgz
 .vscode
+dist/

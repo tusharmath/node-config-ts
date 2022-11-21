@@ -1,37 +1,53 @@
 {
-  "name": "node-config-ts",
-  "version": "0.0.0-development",
-  "dependencies": {
-    "json-to-ts": "^1.6.0",
-    "minimist": "^1.2.0",
-    "prettier": "^1.19.1",
-    "ramda": "^0.27.0"
-  },
-  "peerDependencies": {
-    "@types/webpack": "4.x",
-    "webpack": "4.x"
+  "name": "@wonderzgmbh/node-config-ts",
+  "version": "1.0.0-alpha.1",
+  "files": [
+    "dist/**/*.js",
+    "bin/**/*.ts",
+    "package.json"
+  ],
+  "main": "./dist/index.js",
+  "bin": "./bin/cli",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
   },
   "scripts": {
-    "semantic-release": "semantic-release",
-    "travis-deploy-once": "travis-deploy-once",
-    "lint": "tslint --project .",
-    "prettier": "git ls-files | grep -E '.*\\.(ts|md|json)$' | xargs prettier --write --config=.prettierrc",
-    "test": "mocha"
+    "audit:prod": "yarn audit --groups dependencies",
+    "lint": "eslint --max-warnings=0 --ext ts,tsx src",
+    "test": "mocha",
+    "test:cli": "yarn compile && NODE_ENV=production NODE_CONFIG_TS_DIR=./dist/src/__tests__/__fixtures__/config OUTPUT_FILENAME=config.d.ts OUTPUT_FOLDER=./ node ./bin/cli",
+    "compile": "tsc",
+    "pretest": "yarn compile"
   },
-  "bin": "./bin/cli",
+  "dependencies": {
+    "debug": "^4.3.4",
+    "json-to-ts": "^1.6.0",
+    "minimist": "^1.2.7",
+    "prettier": "^2.7.1",
+    "ramda": "^0.27.0"
+  },
+  "peerDependencies": {},
   "devDependencies": {
-    "@types/minimist": "^1.2.0",
-    "@types/mocha": "^7.0.1",
-    "@types/node": "^13.7.0",
-    "@types/prettier": "^1.19.0",
+    "@types/debug": "^4.1.7",
+    "@types/minimist": "^1.2.2",
+    "@types/mocha": "^10.0.0",
+    "@types/node": "^18.11.9",
+    "@types/prettier": "^2.7.1",
     "@types/ramda": "^0.26.40",
-    "@types/webpack": "^4.41.5",
+    "@typescript-eslint/eslint-plugin": "^5.43.0",
+    "@typescript-eslint/parser": "^5.43.0",
     "cz-conventional-changelog": "^3.1.0",
-    "mocha": "^7.0.1",
+    "eslint": "^8.28.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-import-resolver-typescript": "^3.5.2",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-mocha": "^10.1.0",
+    "eslint-plugin-no-only-tests": "^3.1.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "mocha": "^10.1.0",
     "semantic-release": "^17.0.2",
     "travis-deploy-once": "^5.0.9",
-    "tslint-config-prettier": "^1.18.0",
-    "typescript": "^3.7.5"
+    "typescript": "^4.9.3"
   },
   "config": {
     "commitizen": {

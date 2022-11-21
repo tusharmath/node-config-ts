@@ -1,0 +1,15 @@
+{
+  "internalAccessToken": "INTERNAL_ACCESS_TOKEN",
+  "timeouts": {
+    "step1": "TIMEOUT_STEP_1",
+    "step2": "TIMEOUT_STEP_2",
+    "step3": "TIMEOUT_STEP_3"
+  },
+  "level1": {
+    "level2": {
+      "item2": "bar"
+    },
+    "item1": "123"
+  },
+  "maxRetries": "MAX_RETRIES_FROM_CUSTOM"
+}
