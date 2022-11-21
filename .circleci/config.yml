@@ -1,0 +1,117 @@
+version: 2.1
+
+# #############################################################################
+
+parameters:
+  node_v14_docker_image:
+    type: string
+    default: cimg/node:14.18.2
+
+# #############################################################################
+
+develop_only: &develop_only
+  filters:
+    branches:
+      ignore:
+        - master
+
+master_only: &master_only
+  filters:
+    branches:
+      only: master
+
+# #############################################################################
+
+jobs:
+  # -------------------------------------------------------
+  test:
+    docker:
+      - image: << pipeline.parameters.node_v14_docker_image >>
+    resource_class: medium
+    working_directory: ~/project
+    steps:
+      - checkout:
+          path: ~/project
+      - run: yarn audit --groups dependencies
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "yarn.lock" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+      - run: yarn install --frozen-lockfile
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "yarn.lock" }}
+      - run: yarn test
+  # -------------------------------------------------------
+  publish:
+    docker:
+      - image: << pipeline.parameters.node_v14_docker_image >>
+    resource_class: medium
+    working_directory: ~/project
+    steps:
+      - checkout:
+          path: ~/project
+      - run: echo "//npm.pkg.github.com/:_authToken=$GITHUB_ACCESS_TOKEN" > /home/circleci/.npmrc
+      - run: yarn audit --groups dependencies
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "yarn.lock" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+      - run: yarn install --frozen-lockfile
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "yarn.lock" }}
+      - run:
+          name: compile TS to plain JS to be included in package
+          command: yarn compile
+      - run:
+          name: update NPM to version 8 to be used w/ claudiajs
+          command: sudo npm install -g npm@^8
+      - run:
+          name: publish to github
+          command: npm publish
+
+  # -------------------------------------------------------
+  final:
+    docker:
+      - image: << pipeline.parameters.node_v14_docker_image >>
+    resource_class: medium
+    steps:
+      - run:
+          name: this should only run when all jobs were successfull and is here for github required status checks
+          command: echo "all good"
+
+# #############################################################################
+
+workflows:
+  version: 2
+
+  # -------------------------------------------------------
+  test-branch:
+    jobs:
+      - test:
+          <<: *develop_only
+      - final:
+          <<: *develop_only
+          requires:
+            - test
+
+  # -------------------------------------------------------
+  test-main-and-publish:
+    jobs:
+      - test:
+          <<: *master_only
+      - publish:
+          <<: *master_only
+          requires:
+            - test
+      - final:
+          <<: *master_only
+          requires:
+            - publish
