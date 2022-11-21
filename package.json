@@ -17,7 +17,8 @@
     "test": "mocha",
     "test:cli": "yarn compile && NODE_ENV=production NODE_CONFIG_TS_DIR=./dist/src/__tests__/__fixtures__/config OUTPUT_FILENAME=config.d.ts OUTPUT_FOLDER=./ node ./bin/cli",
     "compile": "tsc",
-    "pretest": "yarn compile"
+    "pretest": "yarn compile",
+    "prepublish": "yarn compile"
   },
   "dependencies": {
     "debug": "^4.3.4",
