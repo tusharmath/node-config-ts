@@ -3,10 +3,9 @@
  */
 
 import * as prettier from 'prettier'
+import JsonToTS from 'json-to-ts'
 
-const JsonToTS = require('json-to-ts')
-
-export const createTypedefCode = (config: any) => {
+export const createTypedefCode = (config: Record<string, any>) => {
   const rootName = 'IConfig'
   const ts = prettier.format(
     [

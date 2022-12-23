@@ -8,8 +8,6 @@ import {config} from '../index'
 import {baseConfigPath} from './baseConfigPath'
 import {createTypedefCode} from './createTypedefCode'
 
-// const JsonToTS = require('json-to-ts')
-
 const file = `Config.d.ts`
 const ts = createTypedefCode(config)
 
