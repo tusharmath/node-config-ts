@@ -1,0 +1,11 @@
+/* tslint:disable */
+/* eslint-disable */
+declare module "node-config-ts" {
+  interface IConfig {
+    type: string
+    port: number
+    maxRetries: number
+  }
+  export const config: Config
+  export type Config = IConfig
+}
