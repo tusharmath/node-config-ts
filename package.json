@@ -2,6 +2,7 @@
   "name": "node-config-ts",
   "version": "0.0.0-development",
   "dependencies": {
+    "dotenv": "^16.0.3",
     "json-to-ts": "^1.6.0",
     "json5": "^2.2.2",
     "minimist": "^1.2.0",
@@ -21,6 +22,7 @@
   },
   "bin": "./bin/cli",
   "devDependencies": {
+    "@types/dotenv": "^8.2.0",
     "@types/minimist": "^1.2.0",
     "@types/mocha": "^7.0.1",
     "@types/node": "^13.7.0",
