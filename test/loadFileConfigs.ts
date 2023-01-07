@@ -4,13 +4,22 @@
 
 import * as assert from 'assert'
 import * as path from 'path'
+import * as fs from 'fs'
+import * as JSON5 from 'json5'
 import {loadFileConfigs} from '../src/loadFileConfigs'
-import * as defaultConfig from './stub-module/config/default.json'
-import * as deploymentConfig from './stub-module/config/deployment/www.example.com.json'
-import * as envConfig from './stub-module/config/env/production.json'
-import * as userConfig from './stub-module/config/user/root.json'
 
 describe('load-file-configs', () => {
+
+  const [defaultConfig, deploymentConfig, envConfig, userConfig] = [
+    'default',
+    'deployment/www.example.com',
+    'env/production',
+    'user/root'
+  ].map(file => `./stub-module/config/${file}.json`)
+  .map(file => path.resolve(__dirname, file))
+  .map(file => fs.readFileSync(file, 'utf8'))
+  .map(config => JSON5.parse(config))
+
   it('should load the configs that are available', () => {
     const process = {
       cwd: () => path.resolve(__dirname, 'stub-module'),
