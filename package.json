@@ -19,7 +19,8 @@
     "lint": "tslint --project .",
     "prettier": "git ls-files | grep -E '.*\\.(ts|md|json)$' | xargs prettier --write --config=.prettierrc",
     "test": "mocha",
-    "commit": "cz"
+    "commit": "cz",
+    "build": "tsc -d"
   },
   "bin": "./bin/cli",
   "devDependencies": {
