@@ -11,6 +11,8 @@ const snapshotDir = path.resolve(__dirname, '__snapshots__')
 describe('createTypedefCode(config)', () => {
   let actual: string
   let config: any
+  // This doesn't seem to work, needs investigation
+  const shouldUpdateSnapshots = process.argv.includes('-u')
 
   before(async () => {
     await fs.mkdir(snapshotDir, {recursive: true})
@@ -38,7 +40,7 @@ describe('createTypedefCode(config)', () => {
     })
 
     it('should match the expected snapshot', () => {
-      return assertMatchesSnapshot(actual, snapshotFile)
+      return assertMatchesSnapshot(actual, snapshotFile, shouldUpdateSnapshots)
     })
 
     it('should generate valid typescript', () => {
