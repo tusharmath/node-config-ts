@@ -1,6 +1,7 @@
 {
   "name": "node-config-ts",
   "version": "0.0.0-development",
+  "description": "A simple configuration manager for typescript based projects",
   "repository": {
     "type": "git",
     "url": "https://github.com/tusharmath/node-config-ts.git"
@@ -25,8 +26,12 @@
     "ramda": "^0.27.0"
   },
   "peerDependencies": {
-    "@types/webpack": "4.x",
     "webpack": "4.x"
+  },
+  "peerDependenciesMeta": {
+    "webpack": {
+      "optional": true
+    }
   },
   "devDependencies": {
     "@types/dotenv": "^8.2.0",
