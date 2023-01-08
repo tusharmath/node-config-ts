@@ -3,8 +3,23 @@
  */
 import {replaceWithEnvVar} from '../src/replaceWithEnvVar'
 import * as assert from 'assert'
+import * as dotenv from 'dotenv'
 
 describe('replaceWithEnvVar', () => {
+  it('should take variables from dotenv file', () => {
+      const process = {
+        env: dotenv.config({path: 'test/.env'}).parsed
+      }
+
+      const baseConfig = {
+        a: 'a',
+        b: '@@SECRET'
+      }
+    const actual = replaceWithEnvVar(baseConfig, process)
+    const expected = {...baseConfig, b: 'TEST_SECRET'}
+    assert.deepEqual(actual, expected)
+  })
+
   it('should merge base config with available env variables', () => {
     const process = {
       env: {
