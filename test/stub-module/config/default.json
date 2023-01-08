@@ -2,5 +2,6 @@
   "type": "default",
   // The port the server will listen on
   "port": 9000,
-  "maxRetries": "@@MAX_RETRIES"
+  "maxRetries": "@@MAX_RETRIES",
+  "secret": "@@SECRET"
 }
