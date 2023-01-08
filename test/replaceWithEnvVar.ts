@@ -7,14 +7,16 @@ import * as dotenv from 'dotenv'
 
 describe('replaceWithEnvVar', () => {
   it('should take variables from dotenv file', () => {
-      const process = {
-        env: dotenv.config({path: 'test/.env'}).parsed
-      }
+    const parsed = dotenv.config({path: 'test/.env'}).parsed
+    assert(parsed != null, 'parsed is null or undefined')
+    const process = {
+      env: parsed as dotenv.DotenvParseOutput
+    }
 
-      const baseConfig = {
-        a: 'a',
-        b: '@@SECRET'
-      }
+    const baseConfig = {
+      a: 'a',
+      b: '@@SECRET'
+    }
     const actual = replaceWithEnvVar(baseConfig, process)
     const expected = {...baseConfig, b: 'TEST_SECRET'}
     assert.deepEqual(actual, expected)
