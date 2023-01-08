@@ -26,7 +26,7 @@
     "ramda": "^0.27.0"
   },
   "peerDependencies": {
-    "webpack": "4.x"
+    "webpack": "4.x || 5.x"
   },
   "peerDependenciesMeta": {
     "webpack": {
