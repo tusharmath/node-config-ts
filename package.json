@@ -1,18 +1,13 @@
 {
   "name": "node-config-ts",
   "version": "0.0.0-development",
-  "dependencies": {
-    "json-to-ts": "^1.6.0",
-    "json5": "^2.2.2",
-    "minimist": "^1.2.0",
-    "prettier": "^1.19.1",
-    "ramda": "^0.27.0"
+  "description": "A simple configuration manager for typescript based projects",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tusharmath/node-config-ts.git"
   },
-  "peerDependencies": {
-    "@types/webpack": "4.x",
-    "webpack": "4.x",
-    "dotenv": "^16.0.3"
-  },
+  "license": "MIT",
+  "bin": "./bin/cli",
   "scripts": {
     "semantic-release": "semantic-release",
     "travis-deploy-once": "travis-deploy-once",
@@ -22,7 +17,23 @@
     "commit": "cz",
     "build": "tsc -d"
   },
-  "bin": "./bin/cli",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "json-to-ts": "^1.6.0",
+    "json5": "^2.2.2",
+    "minimist": "^1.2.0",
+    "prettier": "^1.19.1",
+    "ramda": "^0.27.0"
+  },
+  "peerDependencies": {
+    "webpack": "4.x || 5.x",
+    "dotenv": "^16.0.3"
+  },
+  "peerDependenciesMeta": {
+    "webpack": {
+      "optional": true
+    }
+  },
   "devDependencies": {
     "@types/dotenv": "^8.2.0",
     "@types/minimist": "^1.2.0",
@@ -43,10 +54,5 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/tusharmath/node-config-ts.git"
-  },
-  "license": "MIT"
+  }
 }
