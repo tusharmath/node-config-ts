@@ -5,6 +5,7 @@
     "strict": true,
     "plugins": [
       {"name": "typescript-tslint-plugin", "configFile": "./tslint.json"}
-    ]
+    ],
+    "skipLibCheck": true
   }
 }
