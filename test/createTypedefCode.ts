@@ -29,7 +29,7 @@ describe('createTypedefCode(config)', () => {
           DEPLOYMENT: 'www.example.com',
           NODE_ENV: 'production',
           USER: 'root',
-          MAX_RETRIES: 999
+          MAX_RETRIES: '999'
         }
       }
       config = mergeAllConfigs(process)
@@ -58,7 +58,7 @@ describe('createTypedefCode(config)', () => {
   })
 })
 
-const getDiagnostics = (source: string) => 
+const getDiagnostics = (source: string) =>
   ts.transpileModule(source, {
           compilerOptions: {
             module: ts.ModuleKind.CommonJS,
@@ -67,12 +67,12 @@ const getDiagnostics = (source: string) =>
         }).diagnostics ?? []
 /**
  * Simple snapshot testing.
- * 
+ *
  * @param actual Returned text from tested function
  * @param snapshotFile name of snapshot file. Not a path.
  * @param update updates the snapshot if `actual` doesn't match
- * 
- * @returns 
+ *
+ * @returns
  */
 const assertMatchesSnapshot = async (
   actual: string,

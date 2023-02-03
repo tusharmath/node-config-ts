@@ -4,7 +4,7 @@ declare module "node-config-ts" {
   interface IConfig {
     type: string
     port: number
-    maxRetries: number
+    maxRetries: string
     secret: undefined
   }
   export const config: Config
