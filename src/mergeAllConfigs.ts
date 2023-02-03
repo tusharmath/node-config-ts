@@ -10,9 +10,7 @@ import {mergeDeepRight} from './mergeDeepRight';
 interface Process {
   argv: string[],
   cwd: () => string,
-  env: {
-    [key: string]: string | undefined
-  }
+  env: NodeJS.ProcessEnv
 }
 
 /**
