@@ -3,7 +3,6 @@
  */
 
 import minimist = require('minimist')
-import * as R from 'ramda'
 
 type ProcessArgv = {
   argv: string[]
@@ -15,5 +14,7 @@ type ProcessArgv = {
  * @return {{cliConfig: any}}
  */
 export const loadCLIConfigs = <T extends ProcessArgv>(process: T) => {
-  return R.omit(['_'], minimist(process.argv))
+  // omit _ from the parsed args
+  const { _: _, ...rest } = minimist(process.argv)
+  return rest;
 }

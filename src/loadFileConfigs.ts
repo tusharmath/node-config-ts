@@ -4,11 +4,10 @@
  * Created by tushar on 30/12/17.
  */
 import * as fs from 'fs'
-import * as R from 'ramda'
 import * as JSON5 from 'json5'
 import {configPaths, ConfigTypes, NonConfigEnv} from './configPaths'
 
-const readAndParse = R.pipe((file: string) => fs.readFileSync(file, 'utf8'), JSON5.parse)
+const readAndParse = (file: string) => JSON5.parse(fs.readFileSync(file, 'utf8'))
 
 export type Configurations<T> = {[key in keyof T]: any}
 
@@ -21,8 +20,16 @@ export type Configurations<T> = {[key in keyof T]: any}
 export const loadFileConfigs = <T extends NonConfigEnv>(
   process: T
 ): Configurations<ConfigTypes> => {
-  const itar: any = R.mapObjIndexed(
-    R.ifElse(fs.existsSync, readAndParse, R.always({}))
-  )
-  return itar(configPaths(process))
+  const paths = configPaths(process)
+
+  const configs: Record<string, any> = {}
+
+  Object.entries(paths).forEach(([key, path]) => {
+    configs[key] = {};
+    if (fs.existsSync(path)) {
+      configs[key] = readAndParse(path)
+    }
+  })
+
+  return configs as Configurations<ConfigTypes>
 }
