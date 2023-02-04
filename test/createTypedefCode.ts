@@ -29,7 +29,7 @@ describe('createTypedefCode(config)', () => {
           DEPLOYMENT: 'www.example.com',
           NODE_ENV: 'production',
           USER: 'root',
-          MAX_RETRIES: 999
+          MAX_RETRIES: '999'
         }
       }
       config = mergeAllConfigs(process)

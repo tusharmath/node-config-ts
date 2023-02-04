@@ -1,4 +1,4 @@
-import * as R from 'ramda'
+import {mergeDeepRight} from './mergeDeepRight';
 
 /**
  * Merges the configs in the following order —
@@ -6,11 +6,13 @@ import * as R from 'ramda'
  * @param {ConfigSources} configs
  * @return {any}
  */
-
 export const mergeFileConfigs = (configs: {[key: string]: any}) => {
-  return R.reduce(R.mergeDeepRight, configs.defaultConfig, [
+  const configsOrder = [
+    configs.defaultConfig,
     configs.envConfig,
     configs.deploymentConfig,
-    configs.userConfig
-  ])
+    configs.userConfig,
+  ];
+
+  return configsOrder.reduce(mergeDeepRight, {})
 }

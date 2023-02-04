@@ -11,7 +11,7 @@ describe('mergeAllConfigs()', () => {
         DEPLOYMENT: 'www.example.com',
         NODE_ENV: 'production',
         USER: 'root',
-        MAX_RETRIES: 999
+        MAX_RETRIES: '999'
       }
     }
     const actual = mergeAllConfigs(process)
@@ -31,7 +31,7 @@ describe('mergeAllConfigs()', () => {
         DEPLOYMENT: 'www.example.com',
         NODE_ENV: 'production',
         USER: 'root',
-        MAX_RETRIES: 999
+        MAX_RETRIES: '999'
       }
     }
     const actual = mergeAllConfigs(process)
@@ -52,7 +52,7 @@ describe('mergeAllConfigs()', () => {
         DEPLOYMENT: 'www.example.com',
         NODE_ENV: 'production',
         USER: 'root',
-        MAX_RETRIES: 999,
+        MAX_RETRIES: '999',
         secret: undefined
       }
     }
@@ -75,7 +75,7 @@ describe('mergeAllConfigs()', () => {
           DEPLOYMENT: 'www.example.com',
           NODE_CONFIG_TS_ENV: 'production',
           USER: 'root',
-          MAX_RETRIES: 999,
+          MAX_RETRIES: '999',
           secret: undefined
         }
       }
@@ -96,7 +96,7 @@ describe('mergeAllConfigs()', () => {
           DEPLOYMENT: 'www.example.com',
           NODE_CONFIG_TS_ENV: 'production',
           USER: 'root',
-          MAX_RETRIES: 999,
+          MAX_RETRIES: '999',
           secret: undefined
         }
       }
@@ -118,7 +118,7 @@ describe('mergeAllConfigs()', () => {
           DEPLOYMENT: 'www.example.com',
           NODE_CONFIG_TS_ENV: 'production',
           USER: 'root',
-          MAX_RETRIES: 999,
+          MAX_RETRIES: '999',
         }
       }
       const actual = mergeAllConfigs(process)

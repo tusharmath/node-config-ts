@@ -2,10 +2,8 @@
  * Created by tushar on 10/01/18.
  */
 
-import * as R from 'ramda'
-
-const getVarName = R.replace('@@', '')
-const hasEnvVar = R.test(/^@@.*$/)
+const getVarName = (value: string) => value.replace('@@', '')
+const hasEnvVar = (value: string) => /^@@.*$/.test(value)
 
 type NodeENV = {
   env: {
@@ -16,11 +14,18 @@ export const replaceWithEnvVar = <T, P extends NodeENV>(
   baseConfig: T,
   process: P = { env: {} } as P
 ): T => {
-  const itar: any = R.map((value: any) => {
-    if (R.is(Object, value)) return itar(value)
-    if (R.is(String, value) && hasEnvVar(value))
+  const iterate = (value: any) => {
+    if (typeof value === 'object') {
+      return Object.entries(value).reduce((acc, [key, innerValue]) => {
+        acc[key] = iterate(innerValue)
+        return acc
+      }, {} as Record<string, any>)
+    }
+    if (typeof value === 'string' && hasEnvVar(value)) {
       return process.env[getVarName(value)]
+    }
     return value
-  })
-  return itar(baseConfig)
+  }
+
+  return iterate(baseConfig)
 }
